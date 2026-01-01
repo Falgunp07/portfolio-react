@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import ThemeToggle from "./components/ThemeToggle";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Education from "./components/Education";
+import Contact from "./components/Contact";
+
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -27,6 +34,12 @@ function App() {
     <>
       <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
       <Header />
+      <About/>
+      <Skills/>
+      <Experience/>
+      <Projects/>
+      <Education/>
+      <Contact/>
     </>
   );
 }
