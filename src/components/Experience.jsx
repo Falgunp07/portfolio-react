@@ -1,154 +1,74 @@
-import Reveal from "./Reveal";
 import { motion } from "framer-motion";
-import {
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  useTheme,
-  Stack,
-} from "@mui/material";
-import { ArrowRight, Business, CalendarMonth } from "@mui/icons-material";
+import { Box, Chip, Typography } from "@mui/material";
+import SectionHeading from "./SectionHeading";
+import { portfolioData } from "../data/portfolioData";
 
 function Experience() {
-  const theme = useTheme();
-
-  const experiences = [
-    {
-      title: "Frontend Developer Intern (React)",
-      company: "Patrixel",
-      period: "Jan 2026 - Present",
-      description: [
-        "Developed a role-based merchant dashboard using React and Vite.",
-        "Implemented real-time analytics, audit logs, and reusable UI components.",
-        "Built scalable admin interfaces improving admin usability and data visibility across merchant workflows.",
-      ],
-    },
-    {
-      title: "Website Developer (Freelance)",
-      company: "Self-Employed",
-      period: "Jun 2025 - Oct 2025",
-      description: [
-        "Developed and deployed a WordPress + WooCommerce e-commerce website (caliz.online).",
-        "Optimized UI/UX, SEO, security, and performance for production readiness.",
-      ],
-    },
-  ];
+  const experiences = portfolioData.experiences;
+  const MotionDiv = motion.div;
 
   return (
-    <Reveal>
-      <Box id="experience" className="section-padding">
-        <Typography
-          variant="h2"
-          sx={{
-            mb: 8,
-            textAlign: "center"
-          }}
-        >
-          Work <span className="text-gradient">Experience</span>
-        </Typography>
+    <Box
+      id="experience"
+      component="section"
+      sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: "96px" }}
+    >
+      <SectionHeading
+        eyebrow="Experience"
+        title="Hands-on experience across product dashboards and client delivery."
+        description="My recent work combines reusable frontend architecture, responsive interface design, API integration, and the practical details needed to launch and maintain real websites."
+      />
 
-        <Box sx={{ maxWidth: "900px", mx: "auto", position: "relative" }}>
-          {/* Timeline Line */}
-          <Box
-            sx={{
-              position: "absolute",
-              left: { xs: "20px", md: "50%" },
-              top: 0,
-              bottom: 0,
-              width: "2px",
-              background: `linear-gradient(to bottom, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-              transform: { xs: "none", md: "translateX(-50%)" },
-              display: { xs: "none", md: "block" } // Hide line on mobile for simpler layout or adjust
-            }}
-          />
-
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
+      <Box sx={{ display: "grid", gap: 3 }}>
+        {experiences.map((exp, index) => (
+          <MotionDiv
+            key={`${exp.company}-${exp.period}`}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
+          >
+            <Box className="premium-card timeline-card" sx={{ p: { xs: 3, md: 3.5 } }}>
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: { xs: "flex-start", md: index % 2 === 0 ? "flex-end" : "flex-start" },
-                  mb: 6,
-                  position: "relative",
-                  pl: { xs: 0, md: 0 },
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", lg: "0.75fr 1.25fr" },
+                  gap: 3,
+                  alignItems: "start",
                 }}
               >
-                {/* Timeline Dot */}
-                <Box
-                  sx={{
-                    position: "absolute",
-                    left: { xs: "20px", md: "50%" },
-                    top: "20px",
-                    width: "16px",
-                    height: "16px",
-                    borderRadius: "50%",
-                    background: theme.palette.background.default,
-                    border: `3px solid ${theme.palette.secondary.main}`,
-                    transform: { xs: "none", md: "translateX(-50%)" },
-                    zIndex: 2,
-                    display: { xs: "none", md: "block" }
-                  }}
-                />
-
-                <Box
-                  className="glass-card"
-                  sx={{
-                    width: { xs: "100%", md: "45%" },
-                    p: 4,
-                    borderRadius: "20px",
-                    position: "relative",
-                    "&:hover": {
-                      borderColor: theme.palette.primary.main,
-                    }
-                  }}
-                >
-                  <Typography variant="h5" sx={{ fontWeight: 700, mb: 1, color: theme.palette.text.primary }}>
+                <Box>
+                  <Typography variant="h4" sx={{ mb: 1 }}>
                     {exp.title}
                   </Typography>
-
-                  <Stack direction="row" spacing={2} sx={{ mb: 2, opacity: 0.8 }}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                      <Business fontSize="small" color="primary" />
-                      <Typography variant="body2" sx={{ fontWeight: 600 }}>{exp.company}</Typography>
-                    </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                      <CalendarMonth fontSize="small" color="secondary" />
-                      <Typography variant="body2">{exp.period}</Typography>
-                    </Box>
-                  </Stack>
-
-                  <List dense disablePadding>
-                    {exp.description.map((desc, idx) => (
-                      <ListItem key={idx} alignItems="flex-start" sx={{ px: 0, py: 0.5 }}>
-                        <ListItemIcon sx={{ minWidth: 28, mt: 0.5 }}>
-                          <ArrowRight color="secondary" />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={desc}
-                          primaryTypographyProps={{
-                            variant: "body2",
-                            style: { lineHeight: 1.6, color: theme.palette.text.secondary }
-                          }}
-                        />
-                      </ListItem>
+                  <Typography sx={{ color: "primary.main", fontWeight: 700, mb: 0.65 }}>
+                    {exp.company}
+                  </Typography>
+                  <Typography sx={{ color: "text.secondary", mb: 0.35 }}>{exp.period}</Typography>
+                  <Typography sx={{ color: "text.secondary", mb: 2 }}>{exp.location}</Typography>
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                    {exp.tags.map((tag) => (
+                      <Chip key={tag} label={tag} className="soft-chip" />
                     ))}
-                  </List>
+                  </Box>
+                </Box>
+
+                <Box sx={{ display: "grid", gap: 1.3 }}>
+                  {exp.bullets.map((item) => (
+                    <Box key={item} sx={{ display: "flex", gap: 1.2 }}>
+                      <Box className="bullet-dot" />
+                      <Typography sx={{ color: "text.secondary", lineHeight: 1.85 }}>
+                        {item}
+                      </Typography>
+                    </Box>
+                  ))}
                 </Box>
               </Box>
-            </motion.div>
-          ))}
-        </Box>
+            </Box>
+          </MotionDiv>
+        ))}
       </Box>
-    </Reveal>
+    </Box>
   );
 }
 

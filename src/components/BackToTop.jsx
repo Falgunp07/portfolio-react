@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Fab, useTheme } from "@mui/material";
-import { KeyboardArrowUp } from "@mui/icons-material";
+import { Fab } from "@mui/material";
+import { ArrowUp } from "lucide-react";
 
 function BackToTop() {
-  const theme = useTheme();
   const [visible, setVisible] = useState(false);
+  const MotionDiv = motion.div;
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 300) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
+      setVisible(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", onScroll);
@@ -30,8 +26,8 @@ function BackToTop() {
 
   return (
     <AnimatePresence>
-      {visible && (
-        <motion.div
+      {visible ? (
+        <MotionDiv
           style={{
             position: "fixed",
             bottom: 32,
@@ -42,28 +38,25 @@ function BackToTop() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
         >
-          <motion.div
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <MotionDiv whileHover={{ scale: 1.08, y: -4 }} whileTap={{ scale: 0.95 }}>
             <Fab
               onClick={scrollToTop}
               aria-label="back to top"
               sx={{
-                background: "linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)",
-                color: "#fff",
-                boxShadow: "0 10px 20px -10px rgba(139, 92, 246, 0.5)",
-                transition: "all 0.3s ease",
+                background: "linear-gradient(135deg, #3ae7ff 0%, #ff7a59 100%)",
+                color: "#06101d",
+                boxShadow: "0 16px 34px rgba(0, 0, 0, 0.24)",
                 "&:hover": {
-                  boxShadow: "0 20px 40px -10px rgba(139, 92, 246, 0.7)",
+                  background: "linear-gradient(135deg, #5af0ff 0%, #ff926f 100%)",
+                  boxShadow: "0 22px 44px rgba(0, 0, 0, 0.28)",
                 },
               }}
             >
-              <KeyboardArrowUp fontSize="large" />
+              <ArrowUp size={22} />
             </Fab>
-          </motion.div>
-        </motion.div>
-      )}
+          </MotionDiv>
+        </MotionDiv>
+      ) : null}
     </AnimatePresence>
   );
 }

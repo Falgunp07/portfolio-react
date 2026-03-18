@@ -1,53 +1,69 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { motion, useScroll } from "framer-motion";
 import {
-  AppBar,
-  Toolbar,
   Box,
   Button,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  useTheme,
-  useMediaQuery,
   Container,
+  Dialog,
+  IconButton,
+  Stack,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import ThemeToggle from "./ThemeToggle";
+import { Download, Menu, X } from "lucide-react";
+import { portfolioData } from "../data/portfolioData";
 
-function Navbar({ isDark, toggleTheme }) {
+function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeHref, setActiveHref] = useState("#about");
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { scrollYProgress } = useScroll();
+  const navLinks = useMemo(() => portfolioData.navigation, []);
+  const MotionDiv = motion.div;
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      setScrolled(window.scrollY > 18);
 
-  const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ];
+      const visibleSection = navLinks
+        .map((link) => {
+          const element = document.querySelector(link.href);
+          if (!element) {
+            return null;
+          }
+
+          return {
+            href: link.href,
+            top: element.getBoundingClientRect().top,
+          };
+        })
+        .filter(Boolean)
+        .reverse()
+        .find((section) => section.top <= 140);
+
+      if (visibleSection) {
+        setActiveHref(visibleSection.href);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [navLinks]);
 
   const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen);
+    setDrawerOpen((prev) => !prev);
   };
 
   const handleNavClick = (href) => {
     setDrawerOpen(false);
     const element = document.querySelector(href);
+
     if (element) {
-      const offsetTop = element.offsetTop - 100;
+      const offsetTop = element.offsetTop - 96;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
@@ -57,73 +73,84 @@ function Navbar({ isDark, toggleTheme }) {
 
   return (
     <>
-      <AppBar
+      <Box
         component="nav"
-        position="fixed"
         sx={{
-          background: scrolled
-            ? theme.palette.mode === "dark"
-              ? "rgba(15, 23, 42, 0.8)"
-              : "rgba(255, 255, 255, 0.8)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.1)" : "none",
-          transition: "all 0.3s ease-in-out",
-          width: scrolled ? "85%" : "100%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          top: scrolled ? "15px" : "0",
-          borderRadius: scrolled ? "50px" : "0",
-          border: scrolled ? `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}` : "none",
-          padding: 0,
+          position: "sticky",
+          top: 0,
+          zIndex: 20,
+          pt: 2,
         }}
       >
-        <Container maxWidth="xl" sx={{ padding: "0 !important" }}>
-          <Toolbar
-            disableGutters
+        <Container maxWidth="xl">
+          <Box
             sx={{
+              display: "flex",
               justifyContent: "space-between",
-              minHeight: scrolled ? "45px !important" : "80px",
-              height: scrolled ? "45px" : "auto",
-              transition: "all 0.3s",
-              paddingY: 0
+              alignItems: "center",
+              gap: 2,
+              px: { xs: 2, md: 2.5 },
+              py: 1.5,
+              borderRadius: 999,
+              border: "1px solid rgba(255,255,255,0.1)",
+              background: scrolled ? "rgba(8, 18, 32, 0.84)" : "rgba(8, 18, 32, 0.55)",
+              backdropFilter: "blur(18px)",
+              boxShadow: scrolled ? "0 18px 45px rgba(0, 0, 0, 0.24)" : "none",
+              transition: "all 0.3s ease",
             }}
           >
-            {/* Logo */}
             <Box
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               sx={{
-                fontSize: "1.8rem",
-                fontWeight: 800,
-                fontFamily: '"Outfit", sans-serif',
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                fontFamily: '"Space Grotesk", sans-serif',
                 cursor: "pointer",
-                background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                color: "transparent",
                 display: "flex",
                 alignItems: "center",
-                gap: 1,
+                gap: 1.2,
               }}
             >
-              &lt;FP /&gt;
+              <Box
+                sx={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: "14px",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "#06101d",
+                  background: "linear-gradient(135deg, #3ae7ff, #ff7a59)",
+                  boxShadow: "0 10px 24px rgba(58, 231, 255, 0.25)",
+                }}
+              >
+                FP
+              </Box>
+              <Box>
+                <Box sx={{ color: "text.primary" }}>Falgun Patel</Box>
+                <Box sx={{ color: "text.secondary", fontSize: "0.76rem" }}>Frontend Developer</Box>
+              </Box>
             </Box>
 
-            {/* Desktop Nav */}
-            {!isMobile && (
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            {!isMobile ? (
+              <Stack direction="row" spacing={0.75} alignItems="center">
                 {navLinks.map((link) => (
                   <Button
                     key={link.label}
                     onClick={() => handleNavClick(link.href)}
                     sx={{
-                      color: theme.palette.text.primary,
+                      color: activeHref === link.href ? "#06101d" : "text.primary",
                       fontSize: "0.95rem",
                       fontWeight: 600,
-                      px: 2,
+                      px: 2.1,
+                      background:
+                        activeHref === link.href
+                          ? "linear-gradient(135deg, #3ae7ff, #8bf7ff)"
+                          : "transparent",
                       "&:hover": {
-                        color: theme.palette.primary.main,
-                        background: "rgba(139, 92, 246, 0.1)",
+                        background:
+                          activeHref === link.href
+                            ? "linear-gradient(135deg, #3ae7ff, #8bf7ff)"
+                            : "rgba(255,255,255,0.05)",
                       },
                     }}
                   >
@@ -131,83 +158,91 @@ function Navbar({ isDark, toggleTheme }) {
                   </Button>
                 ))}
 
-                <Box sx={{ ml: 2, pl: 2, borderLeft: `1px solid ${theme.palette.divider}` }}>
-                  <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-                </Box>
-              </Box>
-            )}
-
-            {/* Mobile Menu Toggle */}
-            {isMobile && (
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ ml: 1, color: theme.palette.primary.main }}
+                <Button
+                  component="a"
+                  href={portfolioData.profile.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="outlined"
+                  startIcon={<Download size={16} />}
+                  sx={{ ml: 1 }}
                 >
-                  {drawerOpen ? <CloseIcon /> : <MenuIcon />}
-                </IconButton>
-              </Box>
-            )}
-          </Toolbar>
-        </Container>
-      </AppBar>
-
-      {/* Mobile Drawer */}
-      <Drawer
-        anchor="top"
-        open={drawerOpen}
-        onClose={handleDrawerToggle}
-        sx={{
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: "100%",
-            height: "100%",
-            background: theme.palette.background.default,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          },
-        }}
-      >
-        <IconButton
-          onClick={handleDrawerToggle}
-          sx={{ position: "absolute", top: 20, right: 20, color: theme.palette.text.primary }}
-        >
-          <CloseIcon fontSize="large" />
-        </IconButton>
-
-        <List sx={{ width: "100%", textAlign: "center" }}>
-          {navLinks.map((item) => (
-            <ListItem key={item.label} disablePadding sx={{ justifyContent: "center", my: 2 }}>
-              <ListItemButton
-                onClick={() => handleNavClick(item.href)}
+                  Resume
+                </Button>
+              </Stack>
+            ) : (
+              <IconButton
+                aria-label="Open navigation"
+                onClick={handleDrawerToggle}
                 sx={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  "&:hover": { background: "transparent" },
+                  color: "primary.main",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  bgcolor: "rgba(255,255,255,0.02)",
                 }}
               >
-                <Box
-                  sx={{
-                    fontSize: "2rem",
-                    fontWeight: 700,
-                    color: theme.palette.text.primary,
-                    "&:hover": { color: theme.palette.primary.main },
-                    transition: "color 0.3s",
-                  }}
-                >
-                  {item.label}
-                </Box>
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+                <Menu size={20} />
+              </IconButton>
+            )}
+          </Box>
+        </Container>
+
+        <MotionDiv
+          style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
+          className="scroll-progress"
+        />
+      </Box>
+
+      <Dialog fullScreen open={drawerOpen} onClose={handleDrawerToggle}>
+        <Box
+          sx={{
+            minHeight: "100vh",
+            bgcolor: "background.default",
+            px: 3,
+            py: 3,
+            display: "flex",
+            flexDirection: "column",
+            backgroundImage:
+              "radial-gradient(circle at top left, rgba(58, 231, 255, 0.16), transparent 28%), radial-gradient(circle at bottom right, rgba(255, 122, 89, 0.14), transparent 30%)",
+          }}
+        >
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <IconButton onClick={handleDrawerToggle} sx={{ color: "text.primary" }}>
+              <X size={24} />
+            </IconButton>
+          </Box>
+
+          <Stack spacing={2.2} sx={{ flexGrow: 1, justifyContent: "center" }}>
+            {navLinks.map((item) => (
+              <Button
+                key={item.label}
+                onClick={() => handleNavClick(item.href)}
+                sx={{
+                  justifyContent: "flex-start",
+                  fontSize: "1.6rem",
+                  fontWeight: 700,
+                  color: "text.primary",
+                  px: 0,
+                  py: 1,
+                }}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </Stack>
+
+          <Button
+            component="a"
+            href={portfolioData.profile.resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            variant="contained"
+            startIcon={<Download size={16} />}
+            sx={{ alignSelf: "flex-start" }}
+          >
+            View Resume
+          </Button>
+        </Box>
+      </Dialog>
     </>
   );
 }

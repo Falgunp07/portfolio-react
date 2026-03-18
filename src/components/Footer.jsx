@@ -1,25 +1,51 @@
-import { Box, Typography, Link, useTheme } from "@mui/material";
+import { ArrowUpRight } from "lucide-react";
+import { Box, Button, Container, Typography } from "@mui/material";
+import { portfolioData } from "../data/portfolioData";
 
 function Footer() {
-    const theme = useTheme();
+  const { profile } = portfolioData;
 
-    return (
-        <Box
-            sx={{
-                textAlign: "center",
-                py: 4,
-                borderTop: `1px solid ${theme.palette.divider}`,
-                background: theme.palette.mode === "dark"
-                    ? "rgba(15, 23, 42, 0.5)"
-                    : "rgba(255, 255, 255, 0.5)",
-                backdropFilter: "blur(10px)",
-            }}
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        zIndex: 1,
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        background: "rgba(6, 14, 27, 0.72)",
+        backdropFilter: "blur(14px)",
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          py: 3,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+          flexWrap: "wrap",
+        }}
+      >
+        <Typography sx={{ color: "text.secondary" }}>
+          © {new Date().getFullYear()}{" "}
+          <Box component="span" sx={{ color: "primary.main", fontWeight: 700 }}>
+            {profile.name}
+          </Box>
+          . Designed for a modern frontend-first presentation.
+        </Typography>
+
+        <Button
+          component="a"
+          href={`mailto:${profile.email}`}
+          variant="text"
+          endIcon={<ArrowUpRight size={16} />}
+          sx={{ color: "text.primary", px: 0 }}
         >
-            <Typography variant="body2" color="text.secondary">
-                © {new Date().getFullYear()} <span style={{ color: theme.palette.primary.main, fontWeight: 600 }}>Falgun Patel</span>. All rights reserved.
-            </Typography>
-        </Box>
-    );
+          {profile.email}
+        </Button>
+      </Container>
+    </Box>
+  );
 }
 
 export default Footer;

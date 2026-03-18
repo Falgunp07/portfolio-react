@@ -1,155 +1,106 @@
-import Reveal from "./Reveal";
 import { motion } from "framer-motion";
-import {
-  Box,
-  Typography,
-  Button,
-  Chip,
-  Grid,
-  Stack,
-  useTheme,
-  IconButton,
-  Tooltip
-} from "@mui/material";
-import { OpenInNew, GitHub, Code } from "@mui/icons-material";
+import { ArrowUpRight } from "lucide-react";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import SectionHeading from "./SectionHeading";
+import { portfolioData } from "../data/portfolioData";
 
 function Projects() {
-  const theme = useTheme();
-
-  const projects = [
-    {
-      title: "Verse AI",
-      description: "A comprehensive AI utility platform featuring a centralized API gateway that orchestrates multiple third-party AI services. Includes robust user authentication, subscription management, and usage analytics.",
-      technologies: ["React", "Node.js", "Express", "PostgreSQL", "Clerk Auth"],
-      liveUrl: "https://verseaiuser.vercel.app/",
-      githubUrl: "#", // Add actual link if available
-      period: "Aug 2025 – Oct 2025",
-    },
-    {
-      title: "Edemy LMS",
-      description: "A full-stack Learning Management System tailored for seamless e-learning. Features include course management, student progress tracking, interactive quizzes, and secure payment integration.",
-      technologies: ["MongoDB", "Express", "React", "Node.js", "Tailwind CSS"],
-      liveUrl: "https://mern-frontend-blue-one.vercel.app/",
-      githubUrl: "#", // Add actual link if available
-      period: "Jun 2025 – Aug 2025",
-    }
-  ];
+  const projects = portfolioData.projects;
+  const MotionDiv = motion.div;
 
   return (
-    <Reveal>
-      <Box id="projects" className="section-padding">
-        <Typography
-          variant="h2"
-          sx={{
-            mb: 6,
-            textAlign: "center",
-            "& span": { display: "block", fontSize: "1rem", color: theme.palette.secondary.main, mb: 1, textTransform: "uppercase", letterSpacing: "3px" }
-          }}
-        >
-          <span>Portfolio</span>
-          Featured <span className="text-gradient" style={{ display: "inline", fontSize: "inherit", letterSpacing: "normal", textTransform: "none" }}>Projects</span>
-        </Typography>
+    <Box id="projects" component="section" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: "96px" }}>
+      <SectionHeading
+        eyebrow="Projects"
+        title="Selected builds that show both interface quality and implementation depth."
+        description="These projects reflect the type of frontend work I enjoy most: product interfaces with real flows, real data, and clear visual identity."
+      />
 
-        <Grid container spacing={4}>
-          {projects.map((project, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <motion.div
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300 }}
+      <Box sx={{ display: "grid", gap: 3 }}>
+        {projects.map((project, index) => (
+          <MotionDiv
+            key={project.title}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: index * 0.08, ease: "easeOut" }}
+          >
+            <Box
+              className="premium-card project-card"
+              sx={{
+                p: { xs: 2, md: 2.5 },
+                backgroundImage: project.accent,
+              }}
+            >
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", lg: "1fr 1fr" },
+                  gap: 3,
+                  alignItems: "center",
+                }}
               >
-                <Box
-                  className="glass-card"
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    p: 4,
-                    borderRadius: "24px",
-                    position: "relative",
-                    overflow: "hidden",
-                    border: `1px solid ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}`,
-                    "&:hover": {
-                      borderColor: theme.palette.primary.main,
-                      "& .project-actions": { opacity: 1, transform: "translateY(0)" }
-                    }
-                  }}
-                >
-                  <Box sx={{ mb: 3, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <Box>
-                      <Typography variant="overline" color="secondary" sx={{ fontWeight: 700, letterSpacing: 1 }}>
-                        {project.period}
-                      </Typography>
-                      <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                        {project.title}
-                      </Typography>
-                    </Box>
-                    <Code fontSize="large" sx={{ color: theme.palette.text.secondary, opacity: 0.5 }} />
-                  </Box>
+                <Box className="project-media-shell">
+                  <Box
+                    component="img"
+                    src={project.image}
+                    alt={project.title}
+                    sx={{
+                      width: "100%",
+                      display: "block",
+                      borderRadius: "24px",
+                    }}
+                  />
+                </Box>
 
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ mb: 4, flexGrow: 1, lineHeight: 1.7 }}
-                  >
+                <Box sx={{ p: { xs: 1, md: 1.5 } }}>
+                  <Typography sx={{ color: "primary.main", fontWeight: 700, mb: 1 }}>
+                    {project.period}
+                  </Typography>
+                  <Typography variant="h3" sx={{ mb: 0.75 }}>
+                    {project.title}
+                  </Typography>
+                  <Typography sx={{ color: "secondary.light", mb: 2, fontWeight: 600 }}>
+                    {project.subtitle}
+                  </Typography>
+                  <Typography sx={{ color: "text.secondary", lineHeight: 1.85, mb: 2.5 }}>
                     {project.description}
                   </Typography>
 
-                  <Box sx={{ mb: 4 }}>
-                    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 3 }}>
-                      {project.technologies.map((tech, idx) => (
-                        <Chip
-                          key={idx}
-                          label={tech}
-                          size="small"
-                          sx={{
-                            background: theme.palette.mode === "dark"
-                              ? "rgba(139, 92, 246, 0.15)"
-                              : "rgba(139, 92, 246, 0.1)",
-                            color: theme.palette.primary.main,
-                            fontWeight: 600,
-                            border: "1px solid",
-                            borderColor: "rgba(139, 92, 246, 0.2)",
-                            backdropFilter: "blur(4px)",
-                          }}
-                        />
-                      ))}
-                    </Stack>
+                  <Stack spacing={1.15} sx={{ mb: 2.5 }}>
+                    {project.highlights.map((highlight) => (
+                      <Box key={highlight} sx={{ display: "flex", gap: 1.2 }}>
+                        <Box className="bullet-dot" />
+                        <Typography sx={{ color: "text.secondary", lineHeight: 1.8 }}>
+                          {highlight}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Stack>
+
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2.8 }}>
+                    {project.stack.map((tech) => (
+                      <Chip key={tech} label={tech} className="soft-chip" />
+                    ))}
                   </Box>
 
-                  <Stack direction="row" spacing={2} sx={{ mt: "auto" }}>
-                    <Button
-                      variant="contained"
-                      endIcon={<OpenInNew />}
-                      href={project.liveUrl}
-                      target="_blank"
-                      fullWidth
-                      sx={{ py: 1.5, borderRadius: "12px" }}
-                    >
-                      Live Demo
-                    </Button>
-                    <Tooltip title="View Code">
-                      <IconButton
-                        sx={{
-                          border: `1px solid ${theme.palette.divider}`,
-                          borderRadius: "12px",
-                          width: "48px",
-                          height: "48px",
-                          "&:hover": { color: theme.palette.primary.main, borderColor: theme.palette.primary.main }
-                        }}
-                        href={project.githubUrl}
-                        target="_blank"
-                      >
-                        <GitHub />
-                      </IconButton>
-                    </Tooltip>
-                  </Stack>
+                  <Button
+                    component="a"
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    variant="contained"
+                    endIcon={<ArrowUpRight size={18} />}
+                  >
+                    Visit Live Project
+                  </Button>
                 </Box>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+              </Box>
+            </Box>
+          </MotionDiv>
+        ))}
       </Box>
-    </Reveal>
+    </Box>
   );
 }
 

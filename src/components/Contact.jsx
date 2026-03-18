@@ -1,167 +1,149 @@
-import Reveal from "./Reveal";
 import { motion } from "framer-motion";
-import {
-  Box,
-  Typography,
-  Stack,
-  useTheme,
-  IconButton,
-  Paper
-} from "@mui/material";
-import {
-  Email,
-  Phone,
-  LocationOn,
-  GitHub,
-  LinkedIn,
-} from "@mui/icons-material";
+import { ArrowRight, Download, Github, Linkedin, Mail, Phone, Pin } from "lucide-react";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import SectionHeading from "./SectionHeading";
+import { portfolioData } from "../data/portfolioData";
 
 function Contact() {
-  const theme = useTheme();
+  const { contact, profile } = portfolioData;
+  const MotionDiv = motion.div;
+  const MotionAnchor = motion.a;
 
   const contactInfo = [
     {
-      icon: <Email fontSize="medium" />,
+      icon: Mail,
       label: "Email",
-      value: "falgunpatel071@gmail.com",
-      link: "mailto:falgunpatel071@gmail.com",
-      color: "#ef4444"
+      value: profile.email,
+      link: `mailto:${profile.email}`,
     },
     {
-      icon: <Phone fontSize="medium" />,
+      icon: Phone,
       label: "Phone",
-      value: "+91 9461573282", // Added country code for better formatting
+      value: profile.phone,
       link: "tel:+919461573282",
-      color: "#22c55e"
     },
     {
-      icon: <LocationOn fontSize="medium" />,
+      icon: Pin,
       label: "Location",
-      value: "Pune, India",
-      link: "#",
-      color: "#3b82f6"
-    }
+      value: profile.location,
+      link: "#home",
+    },
   ];
 
   return (
-    <Reveal>
-      <Box id="contact" className="section-padding">
-        <Typography
-          variant="h2"
-          sx={{
-            mb: 8,
-            textAlign: "center"
-          }}
-        >
-          Get In <span className="text-gradient">Touch</span>
-        </Typography>
+    <Box id="contact" component="section" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: "96px" }}>
+      <SectionHeading
+        eyebrow="Contact"
+        title={contact.title}
+        description={contact.description}
+      />
 
-        <Box sx={{ maxWidth: "800px", mx: "auto" }}>
-          <Box
-            className="glass-card"
-            sx={{
-              p: 4,
-              borderRadius: "24px",
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 4
-            }}
-          >
-            <Box>
-              <Typography variant="h4" sx={{ mb: 2, fontWeight: 700 }}>
-                Let's Chat
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.8 }}>
-                Whether you have a question, a project proposal, or just want to say hi,
-                I'll try my best to get back to you!
-              </Typography>
+      <MotionDiv
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <Box className="contact-shell">
+          <Box className="premium-card contact-main-card" sx={{ p: { xs: 3, md: 4 } }}>
+            <Typography variant="h3" sx={{ mb: 1.4 }}>
+              Let's talk about your next frontend build.
+            </Typography>
+            <Typography sx={{ color: "text.secondary", lineHeight: 1.85, mb: 2.5, maxWidth: 640 }}>
+              Whether it is a dashboard, product interface, freelance website, or a polished React
+              frontend, I enjoy building experiences that look intentional and feel smooth to use.
+            </Typography>
 
-              <Stack spacing={3}>
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ x: 5 }}
-                  >
-                    <Paper
-                      component="a"
-                      href={info.link}
-                      elevation={0}
-                      sx={{
-                        p: 2,
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 2,
-                        borderRadius: "16px",
-                        textDecoration: "none",
-                        background: theme.palette.mode === 'dark' ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
-                        border: `1px solid ${theme.palette.divider}`,
-                        transition: "all 0.3s ease",
-                        "&:hover": {
-                          borderColor: theme.palette.primary.main,
-                          background: theme.palette.mode === 'dark' ? "rgba(139, 92, 246, 0.1)" : "rgba(139, 92, 246, 0.05)",
-                        }
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          p: 1.5,
-                          borderRadius: "12px",
-                          background: `rgba(${parseInt(info.color.slice(1, 3), 16)}, ${parseInt(info.color.slice(3, 5), 16)}, ${parseInt(info.color.slice(5, 7), 16)}, 0.1)`,
-                          color: info.color,
-                          display: "flex",
-                        }}
-                      >
-                        {info.icon}
+            <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 3 }}>
+              {contact.chips.map((chip) => (
+                <Chip key={chip} label={chip} className="soft-chip" />
+              ))}
+            </Stack>
+
+            <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
+              <Button
+                component="a"
+                href={`mailto:${profile.email}`}
+                variant="contained"
+                endIcon={<ArrowRight size={18} />}
+              >
+                Start a Conversation
+              </Button>
+              <Button
+                component="a"
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                variant="outlined"
+                startIcon={<Download size={18} />}
+              >
+                View Resume
+              </Button>
+            </Stack>
+          </Box>
+
+          <Box sx={{ display: "grid", gap: 2 }}>
+            {contactInfo.map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <MotionAnchor
+                  key={item.label}
+                  href={item.link}
+                  initial={{ opacity: 0, x: 18 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.5, delay: index * 0.07, ease: "easeOut" }}
+                  className="contact-link-card"
+                >
+                  <Box className="premium-card" sx={{ p: 2.4 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.4 }}>
+                      <Box className="icon-surface">
+                        <Icon size={18} />
                       </Box>
                       <Box>
-                        <Typography variant="body2" color="text.secondary">
-                          {info.label}
+                        <Typography sx={{ color: "text.secondary", fontSize: "0.88rem" }}>
+                          {item.label}
                         </Typography>
-                        <Typography variant="h6" sx={{ fontSize: "1rem", fontWeight: 600, color: theme.palette.text.primary }}>
-                          {info.value}
-                        </Typography>
+                        <Typography sx={{ fontWeight: 700 }}>{item.value}</Typography>
                       </Box>
-                    </Paper>
-                  </motion.div>
-                ))}
-              </Stack>
-            </Box>
+                    </Box>
+                  </Box>
+                </MotionAnchor>
+              );
+            })}
 
-            <Box sx={{ mt: { xs: 4, md: 0 }, textAlign: "center" }}>
-              <Typography variant="overline" color="text.secondary" sx={{ letterSpacing: 2, display: "block", mb: 2 }}>
-                SOCIALS
+            <Box className="premium-card" sx={{ p: 2.4 }}>
+              <Typography sx={{ color: "text.secondary", fontSize: "0.88rem", mb: 1.4 }}>
+                Social Profiles
               </Typography>
-              <Stack direction="row" spacing={2} justifyContent="center">
-                <IconButton
+              <Stack direction="row" spacing={1.2}>
+                <Button
+                  component="a"
                   href="https://github.com/Falgunp07"
                   target="_blank"
-                  size="large"
-                  sx={{
-                    border: `1px solid ${theme.palette.divider}`,
-                    "&:hover": { color: "#fff", background: "#333", borderColor: "#333" }
-                  }}
+                  rel="noreferrer"
+                  variant="outlined"
+                  startIcon={<Github size={18} />}
                 >
-                  <GitHub fontSize="large" />
-                </IconButton>
-                <IconButton
+                  GitHub
+                </Button>
+                <Button
+                  component="a"
                   href="https://linkedin.com/in/falgun-patel-7386701b0"
                   target="_blank"
-                  size="large"
-                  sx={{
-                    border: `1px solid ${theme.palette.divider}`,
-                    "&:hover": { color: "#fff", background: "#0077b5", borderColor: "#0077b5" }
-                  }}
+                  rel="noreferrer"
+                  variant="outlined"
+                  startIcon={<Linkedin size={18} />}
                 >
-                  <LinkedIn fontSize="large" />
-                </IconButton>
+                  LinkedIn
+                </Button>
               </Stack>
             </Box>
           </Box>
         </Box>
-      </Box>
-    </Reveal>
+      </MotionDiv>
+    </Box>
   );
 }
 

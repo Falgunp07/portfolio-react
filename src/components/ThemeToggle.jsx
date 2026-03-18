@@ -4,9 +4,10 @@ import { Brightness4, Brightness7 } from "@mui/icons-material";
 
 function ThemeToggle({ isDark, toggleTheme }) {
   const theme = useTheme();
+  const MotionDiv = motion.div;
 
   return (
-    <motion.div
+    <MotionDiv
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
     >
@@ -27,7 +28,7 @@ function ThemeToggle({ isDark, toggleTheme }) {
         }}
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <MotionDiv
             key={isDark ? "moon" : "sun"}
             initial={{ opacity: 0, rotate: -90 }}
             animate={{ opacity: 1, rotate: 0 }}
@@ -35,10 +36,10 @@ function ThemeToggle({ isDark, toggleTheme }) {
             transition={{ duration: 0.3 }}
           >
             {isDark ? <Brightness7 /> : <Brightness4 />}
-          </motion.div>
+          </MotionDiv>
         </AnimatePresence>
       </IconButton>
-    </motion.div>
+    </MotionDiv>
   );
 }
 

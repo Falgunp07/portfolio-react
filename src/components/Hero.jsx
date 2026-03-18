@@ -1,204 +1,199 @@
 import { motion } from "framer-motion";
-import { Box, Container, Typography, Button, Stack, useTheme, Grid, Avatar } from "@mui/material";
-import { GitHub, LinkedIn, Email, ArrowForward } from "@mui/icons-material";
-import profilePhoto from "../assets/IMG_4301.JPG";
+import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
+import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
+import { portfolioData } from "../data/portfolioData";
 
 function Hero() {
-  const theme = useTheme();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+  const { profile } = portfolioData;
+  const MotionDiv = motion.div;
 
   return (
     <Box
-      id="hero"
+      id="home"
       component="section"
       sx={{
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
         position: "relative",
-        overflow: "hidden",
-        pt: { xs: 12, md: 0 },
+        pt: { xs: 8, md: 6 },
+        pb: { xs: 8, md: 6 },
       }}
     >
-      {/* Background Elements */}
-      <Box className="blob blob-1" />
-      <Box className="blob blob-2" />
-
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 10 }}>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2 }}>
+        <MotionDiv
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: "easeOut" }}
         >
-          <Grid container spacing={6} alignItems="center">
-            {/* Left side - Content */}
-            <Grid item xs={12} md={7}>
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: 600,
-                    color: theme.palette.text.secondary,
-                    mb: 2,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    "&::before": {
-                      content: '""',
-                      width: "40px",
-                      height: "2px",
-                      background: theme.palette.secondary.main,
-                    }
-                  }}
-                >
-                  Hello, I'm
-                </Typography>
-              </motion.div>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", lg: "1.12fr 0.88fr" },
+              gap: { xs: 5, lg: 6 },
+              alignItems: "center",
+            }}
+          >
+            <Box>
+              <Chip
+                icon={<Sparkles size={16} />}
+                label={profile.availability}
+                className="soft-chip"
+                sx={{ mb: 3 }}
+              />
 
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: { xs: "3rem", md: "5rem" },
-                    background: "linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%)",
-                    backgroundClip: "text",
-                    textFillColor: "transparent",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: theme.palette.mode === "dark" ? "transparent" : theme.palette.text.primary,
-                    mb: 1,
-                    letterSpacing: "-2px",
-                  }}
-                >
-                  Falgun Patel
-                </Typography>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontSize: { xs: "1.5rem", md: "2.5rem" },
-                    fontWeight: 600,
-                    mb: 3,
-                    mt: 0.6, // Added top spacing
-                    background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                    backgroundClip: "text",
-                    textFillColor: "transparent",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  Frontend Developer
-                </Typography>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: "1.1rem",
-                    color: theme.palette.text.secondary,
-                    maxWidth: "600px",
-                    mb: 5,
-                    lineHeight: 1.8,
-                  }}
-                >
-                  Frontend Developer based in Pune, India. I specialize in building responsive
-                  and scalable web applications using React, JavaScript, and Tailwind CSS.
-                  Passionate about creating seamless user experiences.
-                </Typography>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    endIcon={<ArrowForward />}
-                    href="#projects"
-                    sx={{ px: 4, py: 1.5 }}
-                  >
-                    View My Work
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    href="#contact"
-                    sx={{ px: 4, py: 1.5 }}
-                  >
-                    Contact Me
-                  </Button>
-                </Stack>
-              </motion.div>
-
-              <motion.div variants={itemVariants}>
-                <Stack direction="row" spacing={3} sx={{ mt: 6 }}>
-                  <Box component="a" href="https://github.com/Falgunp07" target="_blank"
-                    sx={{ color: theme.palette.text.secondary, transition: "0.3s", "&:hover": { color: theme.palette.primary.main, transform: "translateY(-3px)" } }}>
-                    <GitHub fontSize="large" />
-                  </Box>
-                  <Box component="a" href="https://linkedin.com/in/falgun-patel-7386701b0" target="_blank"
-                    sx={{ color: theme.palette.text.secondary, transition: "0.3s", "&:hover": { color: theme.palette.primary.main, transform: "translateY(-3px)" } }}>
-                    <LinkedIn fontSize="large" />
-                  </Box>
-                  <Box component="a" href="mailto:falgunpatel071@gmail.com"
-                    sx={{ color: theme.palette.text.secondary, transition: "0.3s", "&:hover": { color: theme.palette.primary.main, transform: "translateY(-3px)" } }}>
-                    <Email fontSize="large" />
-                  </Box>
-                </Stack>
-              </motion.div>
-            </Grid>
-
-            {/* Right side - Photo */}
-            <Grid item xs={12} md={5} sx={{ display: "flex", justifyContent: "center" }}>
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 50 }}
+              <Typography
+                sx={{
+                  color: "primary.main",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.28em",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  mb: 2,
+                }}
               >
-                <Box
-                  className="glass-card"
-                  sx={{
-                    p: 2,
-                    borderRadius: "30px",
-                    // Removed rotation and tilt on hover per user request
-                    "&:hover": {
-                      transform: "scale(1.02)",
-                    }
-                  }}
+                Frontend Developer Portfolio
+              </Typography>
+
+              <Typography variant="h1" sx={{ maxWidth: 820, mb: 2 }}>
+                {profile.name}
+              </Typography>
+
+              <Typography
+                variant="h4"
+                sx={{
+                  maxWidth: 680,
+                  color: "text.primary",
+                  fontWeight: 500,
+                  lineHeight: 1.35,
+                  mb: 2.5,
+                }}
+              >
+                {profile.headline}
+              </Typography>
+
+              <Typography
+                sx={{
+                  maxWidth: 690,
+                  color: "text.secondary",
+                  fontSize: "1.05rem",
+                  lineHeight: 1.9,
+                  mb: 4,
+                }}
+              >
+                {profile.intro}
+              </Typography>
+
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mb: 3 }}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  href="#projects"
+                  endIcon={<ArrowRight size={18} />}
                 >
+                  Explore Projects
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  startIcon={<Download size={18} />}
+                >
+                  Open Resume
+                </Button>
+              </Stack>
+
+              <Stack direction="row" spacing={1.25} flexWrap="wrap" useFlexGap sx={{ mb: 4 }}>
+                <Chip icon={<MapPin size={16} />} label={profile.location} className="soft-chip" />
+                <Chip label={profile.role} className="soft-chip" />
+              </Stack>
+
+              <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+                {profile.socialLinks.map((link) => {
+                  const Icon = link.icon;
+
+                  return (
+                    <Button
+                      key={link.label}
+                      component="a"
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                      variant="text"
+                      startIcon={<Icon size={18} />}
+                      sx={{
+                        color: "text.secondary",
+                        px: 0,
+                        minWidth: 0,
+                        "&:hover": {
+                          color: "primary.main",
+                          background: "transparent",
+                        },
+                      }}
+                    >
+                      {link.label}
+                    </Button>
+                  );
+                })}
+              </Stack>
+            </Box>
+
+            <MotionDiv
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            >
+              <Box className="hero-visual-shell">
+                <Box className="hero-image-frame">
                   <Box
                     component="img"
-                    src={profilePhoto}
-                    alt="Falgun Patel"
+                    src={profile.profileImage}
+                    alt={profile.name}
                     sx={{
                       width: "100%",
-                      maxWidth: "350px",
-                      borderRadius: "20px",
-                      objectFit: "cover",
                       display: "block",
+                      borderRadius: "28px",
+                      objectFit: "cover",
                     }}
                   />
                 </Box>
-              </motion.div>
-            </Grid>
-          </Grid>
-        </motion.div>
+
+                <Box className="floating-panel floating-panel--top">
+                  <Typography sx={{ fontSize: "0.8rem", color: "text.secondary", mb: 0.75 }}>
+                    Current Focus
+                  </Typography>
+                  <Typography variant="h6">React dashboards + polished UI systems</Typography>
+                </Box>
+
+                <Box className="floating-panel floating-panel--bottom">
+                  <Typography sx={{ fontSize: "0.8rem", color: "text.secondary", mb: 1 }}>
+                    Quick Snapshot
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                      gap: 1.5,
+                    }}
+                  >
+                    {profile.stats.map((item) => (
+                      <Box key={item.label}>
+                        <Typography variant="h5" sx={{ color: "primary.light", mb: 0.35 }}>
+                          {item.value}
+                        </Typography>
+                        <Typography sx={{ color: "text.secondary", fontSize: "0.84rem" }}>
+                          {item.label}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+            </MotionDiv>
+          </Box>
+        </MotionDiv>
       </Container>
     </Box>
   );
