@@ -45,7 +45,8 @@ function CertificateDialog({ certificate, open, onClose }) {
             top: 0,
             zIndex: 3,
             display: "flex",
-            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "flex-start", sm: "center" },
             justifyContent: "space-between",
             gap: 2,
             px: { xs: 2, md: 4 },
@@ -62,7 +63,11 @@ function CertificateDialog({ certificate, open, onClose }) {
             </Typography>
           </Box>
 
-          <Stack direction="row" spacing={1.25}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.25}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
+          >
             <Button
               component="a"
               href={certificate?.fileUrl}
@@ -70,6 +75,7 @@ function CertificateDialog({ certificate, open, onClose }) {
               rel="noreferrer"
               variant="outlined"
               startIcon={<ExternalLink size={16} />}
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               Open
             </Button>
@@ -80,10 +86,15 @@ function CertificateDialog({ certificate, open, onClose }) {
               rel="noreferrer"
               variant="contained"
               startIcon={<Download size={16} />}
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               Download
             </Button>
-            <IconButton onClick={onClose} sx={{ color: "text.primary" }} aria-label="Close certificate viewer">
+            <IconButton
+              onClick={onClose}
+              sx={{ color: "text.primary", alignSelf: { xs: "flex-end", sm: "center" } }}
+              aria-label="Close certificate viewer"
+            >
               <X size={22} />
             </IconButton>
           </Stack>
@@ -146,7 +157,8 @@ function CertificateCard({ certificate, onOpen }) {
             pt: 2.25,
             pb: 1.5,
             display: "flex",
-            alignItems: "center",
+            alignItems: { xs: "flex-start", sm: "center" },
+            flexDirection: { xs: "column", sm: "row" },
             justifyContent: "space-between",
             gap: 2,
           }}
@@ -187,7 +199,8 @@ function CertificateCard({ certificate, onOpen }) {
             px: 2.25,
             py: 2,
             display: "flex",
-            alignItems: "center",
+            alignItems: { xs: "flex-start", sm: "center" },
+            flexDirection: { xs: "column", sm: "row" },
             justifyContent: "space-between",
             gap: 1.5,
           }}
@@ -204,7 +217,7 @@ function CertificateCard({ certificate, onOpen }) {
 
 function Certificates() {
   const [selectedCertificate, setSelectedCertificate] = useState(null);
-  const certificates = useMemo(() => portfolioData.certificates.slice(0, 6), []);
+  const certificates = useMemo(() => portfolioData.certificates, []);
 
   return (
     <Box

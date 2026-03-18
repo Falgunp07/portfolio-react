@@ -121,8 +121,12 @@ function App() {
       MuiContainer: {
         styleOverrides: {
           root: {
-            paddingLeft: "24px",
-            paddingRight: "24px",
+            paddingLeft: "16px",
+            paddingRight: "16px",
+            "@media (min-width:600px)": {
+              paddingLeft: "24px",
+              paddingRight: "24px",
+            },
           },
         },
       },

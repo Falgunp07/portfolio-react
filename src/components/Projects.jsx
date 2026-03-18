@@ -91,6 +91,7 @@ function Projects() {
                     rel="noreferrer"
                     variant="contained"
                     endIcon={<ArrowUpRight size={18} />}
+                    sx={{ width: { xs: "100%", sm: "auto" } }}
                   >
                     Visit Live Project
                   </Button>

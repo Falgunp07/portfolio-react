@@ -321,9 +321,7 @@ a {
     left: 1.5rem;
     right: 1.5rem;
   }
-}
 
-@media (max-width: 599px) {
   .floating-panel {
     position: static;
     max-width: none;
@@ -333,5 +331,16 @@ a {
   .hero-visual-shell {
     display: grid;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .premium-card {
+    border-radius: 24px;
+  }
+
+  .certificate-preview-shell {
+    margin: 0 0.75rem;
+    min-height: 13rem;
   }
 }

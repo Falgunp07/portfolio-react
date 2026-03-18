@@ -117,7 +117,7 @@ function Contact() {
               <Typography sx={{ color: "text.secondary", fontSize: "0.88rem", mb: 1.4 }}>
                 Social Profiles
               </Typography>
-              <Stack direction="row" spacing={1.2}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={1.2}>
                 <Button
                   component="a"
                   href="https://github.com/Falgunp07"
@@ -125,6 +125,7 @@ function Contact() {
                   rel="noreferrer"
                   variant="outlined"
                   startIcon={<Github size={18} />}
+                  sx={{ width: { xs: "100%", sm: "auto" } }}
                 >
                   GitHub
                 </Button>
@@ -135,6 +136,7 @@ function Contact() {
                   rel="noreferrer"
                   variant="outlined"
                   startIcon={<Linkedin size={18} />}
+                  sx={{ width: { xs: "100%", sm: "auto" } }}
                 >
                   LinkedIn
                 </Button>

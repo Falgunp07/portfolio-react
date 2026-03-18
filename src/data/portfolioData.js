@@ -162,6 +162,13 @@ export const portfolioData = {
   ],
   certificates: [
     {
+      title: "AI Tech Summit",
+      issuer: "AI Tech Summit",
+      year: "2026",
+      icon: Rocket,
+      fileUrl: certificateFile("AI Tech Summit .pdf"),
+    },
+    {
       title: "Learn JavaScript",
       issuer: "CodeChef",
       year: "2024",

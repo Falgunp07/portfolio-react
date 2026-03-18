@@ -102,13 +102,14 @@ function Navbar() {
             <Box
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               sx={{
-                fontSize: "1.1rem",
+                fontSize: { xs: "1rem", sm: "1.1rem" },
                 fontWeight: 700,
                 fontFamily: '"Space Grotesk", sans-serif',
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                gap: 1.2,
+                gap: { xs: 1, sm: 1.2 },
+                minWidth: 0,
               }}
             >
               <Box
@@ -125,9 +126,17 @@ function Navbar() {
               >
                 FP
               </Box>
-              <Box>
-                <Box sx={{ color: "text.primary" }}>Falgun Patel</Box>
-                <Box sx={{ color: "text.secondary", fontSize: "0.76rem" }}>Frontend Developer</Box>
+              <Box sx={{ minWidth: 0 }}>
+                <Box sx={{ color: "text.primary", whiteSpace: "nowrap" }}>Falgun Patel</Box>
+                <Box
+                  sx={{
+                    color: "text.secondary",
+                    fontSize: "0.76rem",
+                    display: { xs: "none", sm: "block" },
+                  }}
+                >
+                  Frontend Developer
+                </Box>
               </Box>
             </Box>
 
