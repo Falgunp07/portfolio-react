@@ -41,14 +41,14 @@ function App() {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
       h1: {
         fontFamily: '"Space Grotesk", sans-serif',
-        fontSize: "clamp(3.2rem, 8vw, 6.3rem)",
+        fontSize: "clamp(2.5rem, 14vw, 6.3rem)",
         fontWeight: 700,
         letterSpacing: "-0.06em",
         lineHeight: 1.02,
       },
       h2: {
         fontFamily: '"Space Grotesk", sans-serif',
-        fontSize: "clamp(2rem, 4vw, 3.4rem)",
+        fontSize: "clamp(1.8rem, 7vw, 3.4rem)",
         fontWeight: 700,
         letterSpacing: "-0.05em",
         lineHeight: 1.05,
@@ -91,6 +91,10 @@ function App() {
             padding: "12px 22px",
             boxShadow: "none",
             transition: "transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
+            "@media (max-width:600px)": {
+              padding: "10px 16px",
+              fontSize: "0.92rem",
+            },
             "&:hover": {
               transform: "translateY(-2px)",
               boxShadow: "0 18px 35px rgba(0, 0, 0, 0.22)",

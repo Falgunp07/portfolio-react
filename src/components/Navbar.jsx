@@ -79,7 +79,7 @@ function Navbar() {
           position: "sticky",
           top: 0,
           zIndex: 20,
-          pt: 2,
+          pt: { xs: 1.25, md: 2 },
         }}
       >
         <Container maxWidth="xl">
@@ -89,8 +89,8 @@ function Navbar() {
               justifyContent: "space-between",
               alignItems: "center",
               gap: 2,
-              px: { xs: 2, md: 2.5 },
-              py: 1.5,
+              px: { xs: 1.25, md: 2.5 },
+              py: { xs: 1.1, md: 1.5 },
               borderRadius: 999,
               border: "1px solid rgba(255,255,255,0.1)",
               background: scrolled ? "rgba(8, 18, 32, 0.84)" : "rgba(8, 18, 32, 0.55)",
@@ -116,6 +116,10 @@ function Navbar() {
                 sx={{
                   width: 38,
                   height: 38,
+                  "@media (max-width:600px)": {
+                    width: 34,
+                    height: 34,
+                  },
                   borderRadius: "14px",
                   display: "grid",
                   placeItems: "center",
@@ -227,7 +231,7 @@ function Navbar() {
                 onClick={() => handleNavClick(item.href)}
                 sx={{
                   justifyContent: "flex-start",
-                  fontSize: "1.6rem",
+                  fontSize: { xs: "1.3rem", sm: "1.6rem" },
                   fontWeight: 700,
                   color: "text.primary",
                   px: 0,

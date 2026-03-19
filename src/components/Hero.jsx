@@ -12,12 +12,12 @@ function Hero() {
       id="home"
       component="section"
       sx={{
-        minHeight: "100vh",
+        minHeight: { xs: "auto", md: "100vh" },
         display: "flex",
         alignItems: "center",
         position: "relative",
-        pt: { xs: 8, md: 6 },
-        pb: { xs: 8, md: 6 },
+        pt: { xs: 5, md: 6 },
+        pb: { xs: 6, md: 6 },
       }}
     >
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2 }}>
@@ -39,23 +39,42 @@ function Hero() {
                 icon={<Sparkles size={16} />}
                 label={profile.availability}
                 className="soft-chip"
-                sx={{ mb: 3 }}
+                sx={{
+                  mb: 2.5,
+                  maxWidth: { xs: "100%", sm: "fit-content" },
+                  height: "auto",
+                  alignItems: "flex-start",
+                  "& .MuiChip-label": {
+                    display: "block",
+                    whiteSpace: "normal",
+                    py: 1,
+                    lineHeight: 1.45,
+                  },
+                }}
               />
 
               <Typography
                 sx={{
                   color: "primary.main",
                   textTransform: "uppercase",
-                  letterSpacing: "0.28em",
-                  fontSize: "0.85rem",
+                  letterSpacing: { xs: "0.16em", sm: "0.28em" },
+                  fontSize: { xs: "0.72rem", sm: "0.85rem" },
                   fontWeight: 700,
-                  mb: 2,
+                  mb: 1.5,
                 }}
               >
                 Frontend Developer Portfolio
               </Typography>
 
-              <Typography variant="h1" sx={{ maxWidth: 820, mb: 2 }}>
+              <Typography
+                variant="h1"
+                sx={{
+                  maxWidth: 820,
+                  mb: 1.5,
+                  fontSize: { xs: "2.75rem", sm: "3.7rem", md: undefined },
+                  lineHeight: { xs: 1.04, sm: 1.02 },
+                }}
+              >
                 {profile.name}
               </Typography>
 
@@ -65,8 +84,9 @@ function Hero() {
                   maxWidth: 680,
                   color: "text.primary",
                   fontWeight: 500,
-                  lineHeight: 1.35,
-                  mb: 2.5,
+                  lineHeight: { xs: 1.2, sm: 1.35 },
+                  fontSize: { xs: "1.15rem", sm: "1.6rem", md: undefined },
+                  mb: 2,
                 }}
               >
                 {profile.headline}
@@ -76,9 +96,9 @@ function Hero() {
                 sx={{
                   maxWidth: 690,
                   color: "text.secondary",
-                  fontSize: "1.05rem",
-                  lineHeight: 1.9,
-                  mb: 4,
+                  fontSize: { xs: "0.98rem", sm: "1.05rem" },
+                  lineHeight: { xs: 1.75, sm: 1.9 },
+                  mb: 3,
                 }}
               >
                 {profile.intro}
@@ -90,6 +110,7 @@ function Hero() {
                   size="large"
                   href="#projects"
                   endIcon={<ArrowRight size={18} />}
+                  sx={{ width: { xs: "100%", sm: "auto" } }}
                 >
                   Explore Projects
                 </Button>
@@ -100,17 +121,31 @@ function Hero() {
                   target="_blank"
                   rel="noreferrer"
                   startIcon={<Download size={18} />}
+                  sx={{ width: { xs: "100%", sm: "auto" } }}
                 >
                   Open Resume
                 </Button>
               </Stack>
 
-              <Stack direction="row" spacing={1.25} flexWrap="wrap" useFlexGap sx={{ mb: 4 }}>
+              <Stack
+                direction="row"
+                spacing={1}
+                flexWrap="wrap"
+                useFlexGap
+                alignItems="flex-start"
+                sx={{ mb: 3 }}
+              >
                 <Chip icon={<MapPin size={16} />} label={profile.location} className="soft-chip" />
                 <Chip label={profile.role} className="soft-chip" />
               </Stack>
 
-              <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={1.2}
+                flexWrap="wrap"
+                useFlexGap
+                alignItems={{ xs: "flex-start", sm: "center" }}
+              >
                 {profile.socialLinks.map((link) => {
                   const Icon = link.icon;
 
@@ -127,6 +162,7 @@ function Hero() {
                         color: "text.secondary",
                         px: 0,
                         minWidth: 0,
+                        justifyContent: "flex-start",
                         "&:hover": {
                           color: "primary.main",
                           background: "transparent",
@@ -145,7 +181,7 @@ function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             >
-              <Box className="hero-visual-shell">
+              <Box className="hero-visual-shell" sx={{ mt: { xs: 0.5, md: 0 } }}>
                 <Box className="hero-image-frame">
                   <Box
                     component="img"
