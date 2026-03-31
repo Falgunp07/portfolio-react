@@ -53,13 +53,18 @@ function Hero() {
                 className="soft-chip"
                 sx={{
                   mb: 2.5,
-                  maxWidth: { xs: "100%", sm: "fit-content" },
-                  height: "auto",
+                  maxWidth: "fit-content",
+                  height: { xs: 32, sm: "auto" },
                   alignItems: "flex-start",
+                  "& .MuiChip-icon": {
+                    fontSize: { xs: "0.95rem", sm: "1rem" },
+                  },
                   "& .MuiChip-label": {
                     display: "block",
-                    whiteSpace: "normal",
-                    py: 1,
+                    whiteSpace: "nowrap",
+                    py: { xs: 0.4, sm: 1 },
+                    px: { xs: 1.15, sm: 1.5 },
+                    fontSize: { xs: "0.75rem", sm: "0.88rem" },
                     lineHeight: 1.45,
                   },
                 }}
@@ -177,11 +182,11 @@ function Hero() {
               </Stack>
 
               <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={2.2}
+                direction="row"
+                spacing={0.8}
                 flexWrap="wrap"
                 useFlexGap
-                alignItems={{ xs: "flex-start", sm: "center" }}
+                alignItems="center"
               >
                 {profile.socialLinks.map((link) => {
                   const Icon = link.icon;
@@ -194,15 +199,19 @@ function Hero() {
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                       variant="text"
-                      startIcon={<Icon size={21} />}
+                      startIcon={<Icon size={16} />}
+                      size="small"
                       sx={{
                         color: "text.secondary",
-                        px: 0.4,
-                        py: 0.5,
-                        fontSize: "1rem",
-                        fontWeight: 600,
+                        px: 0.15,
+                        py: 0.2,
+                        fontSize: { xs: "0.83rem", sm: "0.92rem" },
+                        fontWeight: 500,
                         minWidth: 0,
                         justifyContent: "flex-start",
+                        "& .MuiButton-startIcon": {
+                          marginRight: 0.6,
+                        },
                         "&:hover": {
                           color: "primary.main",
                           background: "transparent",
@@ -239,7 +248,7 @@ function Hero() {
                       width: "100%",
                       display: "block",
                       borderRadius: "28px",
-                      maxHeight: { xs: 572, md: 676 },
+                      maxHeight: { xs: 500, md: 676 },
                       objectFit: "cover",
                     }}
                   />

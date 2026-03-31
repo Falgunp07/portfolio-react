@@ -32,8 +32,8 @@ function Experience() {
               <Box
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: { xs: "1fr", lg: "0.75fr 1.25fr" },
-                  gap: 3,
+                  gridTemplateColumns: { xs: "1fr", md: "minmax(0, 0.82fr) minmax(0, 1.18fr)" },
+                  gap: { xs: 2.2, md: 3 },
                   alignItems: "start",
                 }}
               >
@@ -53,11 +53,11 @@ function Experience() {
                   </Box>
                 </Box>
 
-                <Box sx={{ display: "grid", gap: 1.3 }}>
+                <Box sx={{ display: "grid", gap: 1.3, textAlign: "left" }}>
                   {exp.bullets.map((item) => (
                     <Box key={item} sx={{ display: "flex", gap: 1.2 }}>
                       <Box className="bullet-dot" />
-                      <Typography sx={{ color: "text.secondary", lineHeight: 1.85 }}>
+                      <Typography sx={{ color: "text.secondary", lineHeight: 1.85, textAlign: "justify" }}>
                         {item}
                       </Typography>
                     </Box>

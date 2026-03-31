@@ -28,7 +28,7 @@ function Projects() {
             <Box
               className="premium-card project-card"
               sx={{
-                p: { xs: 2, md: 2.3 },
+                p: { xs: 1.6, md: 2.3 },
                 backgroundImage: project.accent,
                 maxWidth: "100%",
                 mx: "auto",
@@ -38,7 +38,7 @@ function Projects() {
                 sx={{
                   display: "grid",
                   gridTemplateColumns: { xs: "1fr", lg: "minmax(0, 0.95fr) minmax(0, 1.05fr)" },
-                  gap: { xs: 2.2, md: 2.8 },
+                  gap: { xs: 1.8, md: 2.8 },
                   alignItems: "start",
                 }}
               >
@@ -121,10 +121,11 @@ function Projects() {
 
                 <Box
                   sx={{
-                    p: { xs: 0.75, md: 1.1 },
+                    p: { xs: 0.4, md: 1.1 },
                     display: "flex",
                     flexDirection: "column",
                     height: "100%",
+                    textAlign: "left",
                   }}
                 >
                   <Typography
@@ -137,6 +138,7 @@ function Projects() {
                       backgroundClip: project.descriptionGradient ? "text" : "initial",
                       WebkitTextFillColor: project.descriptionGradient ? "transparent" : "inherit",
                       fontWeight: project.descriptionGradient ? 600 : 400,
+                      textAlign: "justify",
                     }}
                   >
                     {project.description}
@@ -146,7 +148,14 @@ function Projects() {
                     {project.highlights.map((highlight) => (
                       <Box key={highlight} sx={{ display: "flex", gap: 1 }}>
                         <Box className="bullet-dot" />
-                        <Typography sx={{ color: "text.secondary", lineHeight: 1.72, fontSize: "0.94rem" }}>
+                        <Typography
+                          sx={{
+                            color: "text.secondary",
+                            lineHeight: 1.72,
+                            fontSize: "0.94rem",
+                            textAlign: "justify",
+                          }}
+                        >
                           {highlight}
                         </Typography>
                       </Box>
