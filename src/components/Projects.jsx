@@ -48,8 +48,10 @@ function Projects() {
                       alt={project.title}
                       sx={{
                         width: "100%",
+                        height: "100%",
                         display: "block",
                         borderRadius: "24px",
+                        objectFit: "cover",
                       }}
                     />
                   </Box>
@@ -57,7 +59,6 @@ function Projects() {
                   <Box
                     className="project-media-shell"
                     sx={{
-                      minHeight: { xs: 160, md: 220 },
                       display: "grid",
                       placeItems: "center",
                     }}
@@ -86,12 +87,23 @@ function Projects() {
                   <Typography sx={{ color: "secondary.light", mb: 2, fontWeight: 600 }}>
                     {project.subtitle}
                   </Typography>
-                  <Typography sx={{ color: "text.secondary", lineHeight: 1.85, mb: 2.5 }}>
+                  <Typography
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.85,
+                      mb: 2.5,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      minHeight: "5.6rem",
+                    }}
+                  >
                     {project.description}
                   </Typography>
 
                   <Stack spacing={1.15} sx={{ mb: 2.5 }}>
-                    {project.highlights.map((highlight) => (
+                    {project.highlights.slice(0, 3).map((highlight) => (
                       <Box key={highlight} sx={{ display: "flex", gap: 1.2 }}>
                         <Box className="bullet-dot" />
                         <Typography sx={{ color: "text.secondary", lineHeight: 1.8 }}>
@@ -101,10 +113,16 @@ function Projects() {
                     ))}
                   </Stack>
 
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2.8 }}>
-                    {project.stack.map((tech) => (
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2.8, minHeight: 64 }}>
+                    {project.stack.slice(0, 5).map((tech) => (
                       <Chip key={tech} label={tech} className="soft-chip" />
                     ))}
+                    {project.stack.length > 5 ? (
+                      <Chip
+                        label={`+${project.stack.length - 5}`}
+                        className="soft-chip"
+                      />
+                    ) : null}
                   </Box>
 
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={1.25}>

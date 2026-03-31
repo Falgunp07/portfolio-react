@@ -149,6 +149,8 @@ function CertificateCard({ certificate, onOpen }) {
           height: "100%",
           overflow: "hidden",
           cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Box
@@ -163,20 +165,44 @@ function CertificateCard({ certificate, onOpen }) {
             gap: 2,
           }}
         >
-          <Stack direction="row" spacing={1.5} alignItems="center">
+          <Stack direction="row" spacing={1.5} alignItems="center" sx={{ flex: 1 }}>
             <Box className="icon-surface">
               <Icon size={18} />
             </Box>
             <Box>
-              <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: "1rem",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  lineHeight: 1.25,
+                }}
+              >
                 {certificate.title}
               </Typography>
-              <Typography sx={{ color: "text.secondary", fontSize: "0.92rem" }}>
+              <Typography
+                sx={{
+                  color: "text.secondary",
+                  fontSize: "0.92rem",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 1,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
                 {certificate.issuer}
               </Typography>
             </Box>
           </Stack>
-          <Chip label={certificate.year} size="small" className="soft-chip" />
+          <Chip
+            label={certificate.year}
+            size="small"
+            className="soft-chip"
+            sx={{ alignSelf: { xs: "flex-end", sm: "center" } }}
+          />
         </Box>
 
         <Box className="certificate-preview-shell">
@@ -203,6 +229,7 @@ function CertificateCard({ certificate, onOpen }) {
             flexDirection: { xs: "column", sm: "row" },
             justifyContent: "space-between",
             gap: 1.5,
+            mt: "auto",
           }}
         >
           <Typography sx={{ color: "text.secondary", fontSize: "0.92rem" }}>

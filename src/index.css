@@ -209,10 +209,12 @@ a {
 }
 
 .project-media-shell {
+  aspect-ratio: 16 / 9;
   padding: 0.85rem;
   border-radius: 30px;
   background: rgba(6, 14, 27, 0.66);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
 }
 
 .certificate-card {
@@ -226,11 +228,11 @@ a {
 
 .certificate-preview-shell {
   margin: 0 1rem;
+  aspect-ratio: 1.45 / 1;
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.96);
-  min-height: 16rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -354,7 +356,6 @@ a {
 
   .certificate-preview-shell {
     margin: 0 0.75rem;
-    min-height: 13rem;
   }
 
   .certificate-page-shell {
@@ -387,6 +388,6 @@ a {
   }
 
   .certificate-preview-shell {
-    min-height: 11rem;
+    aspect-ratio: 1.35 / 1;
   }
 }
