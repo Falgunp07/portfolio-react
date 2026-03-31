@@ -12,8 +12,8 @@ function Education() {
     <Box id="education" component="section" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: "96px" }}>
       <SectionHeading
         eyebrow="Education"
-        title="Academic foundation supporting hands-on frontend practice."
-        description="My academic path runs alongside the product and project work above, giving me a solid base while I continue building practical frontend experience."
+        title="Academic foundation supporting hands-on web development practice."
+        description="My academic path runs alongside the product and project work above, giving me a solid base while I continue building practical web development experience."
       />
 
       <Box

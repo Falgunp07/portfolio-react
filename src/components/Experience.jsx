@@ -16,7 +16,7 @@ function Experience() {
       <SectionHeading
         eyebrow="Experience"
         title="Hands-on experience across product dashboards and client delivery."
-        description="My recent work combines reusable frontend architecture, responsive interface design, API integration, and the practical details needed to launch and maintain real websites."
+        description="My recent work combines reusable web architecture, responsive interface design, API integration, and the practical details needed to launch and maintain real websites."
       />
 
       <Box sx={{ display: "grid", gap: 3 }}>

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
 import { Box, Button, Chip, Container, Stack, Typography } from "@mui/material";
 import { portfolioData } from "../data/portfolioData";
@@ -6,6 +7,17 @@ import { portfolioData } from "../data/portfolioData";
 function Hero() {
   const { profile } = portfolioData;
   const MotionDiv = motion.div;
+  const MotionSpan = motion.span;
+  const dynamicWords = profile.headlineDynamicWords ?? ["sharp", "scalable", "production ready"];
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % dynamicWords.length);
+    }, 2100);
+
+    return () => clearInterval(interval);
+  }, [dynamicWords.length]);
 
   return (
     <Box
@@ -16,7 +28,7 @@ function Hero() {
         display: "flex",
         alignItems: "center",
         position: "relative",
-        pt: { xs: 5, md: 6 },
+        pt: { xs: 2.5, md: 3 },
         pb: { xs: 6, md: 6 },
       }}
     >
@@ -63,7 +75,7 @@ function Hero() {
                   mb: 1.5,
                 }}
               >
-                Frontend Developer Portfolio
+                Web Developer Portfolio
               </Typography>
 
               <Typography
@@ -89,7 +101,32 @@ function Hero() {
                   mb: 2,
                 }}
               >
-                {profile.headline}
+                {profile.headlineBase ?? "Building polished web experiences that feel"}
+                <Box component="span" sx={{ display: "block", mt: 0.45, minHeight: { xs: "1.45em", sm: "1.3em" } }}>
+                  <AnimatePresence mode="wait">
+                    <Box
+                      key={dynamicWords[wordIndex]}
+                      component={MotionSpan}
+                      initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -8, filter: "blur(6px)" }}
+                      transition={{ duration: 0.45, ease: "easeOut" }}
+                      sx={{
+                        display: "inline-block",
+                        whiteSpace: "nowrap",
+                        fontSize: { xs: "1.28rem", sm: "1.85rem", md: "2.05rem" },
+                        fontWeight: 700,
+                        lineHeight: 1.05,
+                        background: "linear-gradient(120deg, #b973ff 0%, #7d5fff 45%, #3ae7ff 100%)",
+                        backgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      {dynamicWords[wordIndex]}
+                    </Box>
+                  </AnimatePresence>
+                  .
+                </Box>
               </Typography>
 
               <Typography
@@ -141,7 +178,7 @@ function Hero() {
 
               <Stack
                 direction={{ xs: "column", sm: "row" }}
-                spacing={1.2}
+                spacing={2.2}
                 flexWrap="wrap"
                 useFlexGap
                 alignItems={{ xs: "flex-start", sm: "center" }}
@@ -157,10 +194,13 @@ function Hero() {
                       target={link.href.startsWith("http") ? "_blank" : undefined}
                       rel={link.href.startsWith("http") ? "noreferrer" : undefined}
                       variant="text"
-                      startIcon={<Icon size={18} />}
+                      startIcon={<Icon size={21} />}
                       sx={{
                         color: "text.secondary",
-                        px: 0,
+                        px: 0.4,
+                        py: 0.5,
+                        fontSize: "1rem",
+                        fontWeight: 600,
                         minWidth: 0,
                         justifyContent: "flex-start",
                         "&:hover": {
@@ -181,7 +221,15 @@ function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             >
-              <Box className="hero-visual-shell" sx={{ mt: { xs: 0.5, md: 0 } }}>
+              <Box
+                className="hero-visual-shell"
+                sx={{
+                  mt: { xs: 0.5, md: 0 },
+                  width: { xs: "100%", md: "100%", lg: "100%" },
+                  ml: "auto",
+                  mr: "auto",
+                }}
+              >
                 <Box className="hero-image-frame">
                   <Box
                     component="img"
@@ -191,40 +239,10 @@ function Hero() {
                       width: "100%",
                       display: "block",
                       borderRadius: "28px",
+                      maxHeight: { xs: 572, md: 676 },
                       objectFit: "cover",
                     }}
                   />
-                </Box>
-
-                <Box className="floating-panel floating-panel--top">
-                  <Typography sx={{ fontSize: "0.8rem", color: "text.secondary", mb: 0.75 }}>
-                    Current Focus
-                  </Typography>
-                  <Typography variant="h6">React dashboards + polished UI systems</Typography>
-                </Box>
-
-                <Box className="floating-panel floating-panel--bottom">
-                  <Typography sx={{ fontSize: "0.8rem", color: "text.secondary", mb: 1 }}>
-                    Quick Snapshot
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: { xs: "1fr", sm: "repeat(3, minmax(0, 1fr))" },
-                      gap: 1.5,
-                    }}
-                  >
-                    {profile.stats.map((item) => (
-                      <Box key={item.label}>
-                        <Typography variant="h5" sx={{ color: "primary.light", mb: 0.35 }}>
-                          {item.value}
-                        </Typography>
-                        <Typography sx={{ color: "text.secondary", fontSize: "0.84rem" }}>
-                          {item.label}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
                 </Box>
               </Box>
             </MotionDiv>

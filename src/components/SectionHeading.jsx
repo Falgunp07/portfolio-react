@@ -1,6 +1,11 @@
 import { Box, Typography } from "@mui/material";
 
 function SectionHeading({ eyebrow, title, description, align = "left" }) {
+  const titleWords = title ? title.trim().split(/\s+/) : [];
+  const titleGradientWordCount = Math.min(3, titleWords.length);
+  const titleStart = titleWords.slice(0, titleWords.length - titleGradientWordCount).join(" ");
+  const titleEnd = titleWords.slice(-titleGradientWordCount).join(" ");
+
   return (
     <Box sx={{ mb: 4.5, textAlign: align }}>
       <Typography
@@ -37,7 +42,19 @@ function SectionHeading({ eyebrow, title, description, align = "left" }) {
           mb: description ? 1.5 : 0,
         }}
       >
-        {title}
+        {titleStart ? `${titleStart} ` : ""}
+        <Box
+          component="span"
+          sx={{
+            display: "inline-block",
+            whiteSpace: "nowrap",
+            background: "linear-gradient(120deg, #3ae7ff 0%, #7d5fff 45%, #ff7a59 100%)",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          {titleEnd}
+        </Box>
       </Typography>
 
       {description ? (

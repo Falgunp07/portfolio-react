@@ -76,8 +76,10 @@ function Navbar() {
       <Box
         component="nav"
         sx={{
-          position: "sticky",
+          position: "fixed",
           top: 0,
+          left: 0,
+          right: 0,
           zIndex: 20,
           pt: { xs: 1.25, md: 2 },
         }}
@@ -139,7 +141,7 @@ function Navbar() {
                     display: { xs: "none", sm: "block" },
                   }}
                 >
-                  Frontend Developer
+                  Web Developer
                 </Box>
               </Box>
             </Box>
@@ -204,6 +206,7 @@ function Navbar() {
           className="scroll-progress"
         />
       </Box>
+      <Box sx={{ height: { xs: "43px", md: "52px" } }} />
 
       <Dialog fullScreen open={drawerOpen} onClose={handleDrawerToggle}>
         <Box

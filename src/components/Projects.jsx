@@ -13,7 +13,7 @@ function Projects() {
       <SectionHeading
         eyebrow="Projects"
         title="Selected builds that show both interface quality and implementation depth."
-        description="These projects reflect the type of frontend work I enjoy most: product interfaces with real flows, real data, and clear visual identity."
+        description="These projects reflect the type of web development work I enjoy most: product interfaces with real flows, real data, and clear visual identity."
       />
 
       <Box sx={{ display: "grid", gap: 3 }}>
@@ -28,15 +28,17 @@ function Projects() {
             <Box
               className="premium-card project-card"
               sx={{
-                p: { xs: 2, md: 2.5 },
+                p: { xs: 2, md: 2.3 },
                 backgroundImage: project.accent,
+                maxWidth: "100%",
+                mx: "auto",
               }}
             >
               <Box
                 sx={{
                   display: "grid",
                   gridTemplateColumns: { xs: "1fr", lg: "1fr 1fr" },
-                  gap: 3,
+                  gap: { xs: 2, md: 2.2 },
                   alignItems: "center",
                 }}
               >
@@ -50,7 +52,7 @@ function Projects() {
                         width: "100%",
                         height: "100%",
                         display: "block",
-                        borderRadius: "24px",
+                        borderRadius: "20px",
                         objectFit: "cover",
                       }}
                     />
@@ -64,63 +66,73 @@ function Projects() {
                     }}
                   >
                     <Box sx={{ textAlign: "center" }}>
-                      <Box className="icon-surface" sx={{ mx: "auto", mb: 1.5 }}>
-                        <Server size={20} />
+                      <Box className="icon-surface" sx={{ mx: "auto", mb: 1.1 }}>
+                        <Server size={18} />
                       </Box>
-                      <Typography variant="h5" sx={{ mb: 0.6 }}>
+                      <Typography variant="h6" sx={{ mb: 0.4 }}>
                         Backend Security Project
                       </Typography>
-                      <Typography sx={{ color: "text.secondary" }}>
+                      <Typography sx={{ color: "text.secondary", fontSize: "0.92rem" }}>
                         Authentication and session architecture
                       </Typography>
                     </Box>
                   </Box>
                 )}
 
-                <Box sx={{ p: { xs: 1, md: 1.5 } }}>
-                  <Typography sx={{ color: "primary.main", fontWeight: 700, mb: 1 }}>
+                <Box sx={{ p: { xs: 0.75, md: 1.1 } }}>
+                  <Typography sx={{ color: "primary.main", fontWeight: 700, fontSize: "0.95rem", mb: 0.8 }}>
                     {project.period}
                   </Typography>
-                  <Typography variant="h3" sx={{ mb: 0.75 }}>
+                  <Typography
+                    sx={{
+                      mb: 0.55,
+                      fontFamily: '"Space Grotesk", sans-serif',
+                      fontWeight: 700,
+                      fontSize: { xs: "1.45rem", md: "1.65rem" },
+                      lineHeight: 1.15,
+                    }}
+                  >
                     {project.title}
                   </Typography>
-                  <Typography sx={{ color: "secondary.light", mb: 2, fontWeight: 600 }}>
+                  <Typography sx={{ color: "secondary.light", mb: 1.5, fontWeight: 600, fontSize: "0.96rem" }}>
                     {project.subtitle}
                   </Typography>
                   <Typography
                     sx={{
                       color: "text.secondary",
-                      lineHeight: 1.85,
-                      mb: 2.5,
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                      minHeight: "5.6rem",
+                      lineHeight: 1.7,
+                      fontSize: "0.98rem",
+                      mb: 1.8,
                     }}
                   >
                     {project.description}
                   </Typography>
 
-                  <Stack spacing={1.15} sx={{ mb: 2.5 }}>
-                    {project.highlights.slice(0, 3).map((highlight) => (
-                      <Box key={highlight} sx={{ display: "flex", gap: 1.2 }}>
+                  <Stack spacing={0.9} sx={{ mb: 1.8 }}>
+                    {project.highlights.map((highlight) => (
+                      <Box key={highlight} sx={{ display: "flex", gap: 1 }}>
                         <Box className="bullet-dot" />
-                        <Typography sx={{ color: "text.secondary", lineHeight: 1.8 }}>
+                        <Typography sx={{ color: "text.secondary", lineHeight: 1.72, fontSize: "0.94rem" }}>
                           {highlight}
                         </Typography>
                       </Box>
                     ))}
                   </Stack>
 
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2.8, minHeight: 64 }}>
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.8, mb: 2, minHeight: 52 }}>
                     {project.stack.slice(0, 5).map((tech) => (
-                      <Chip key={tech} label={tech} className="soft-chip" />
+                      <Chip
+                        key={tech}
+                        label={tech}
+                        className="soft-chip"
+                        sx={{ "& .MuiChip-label": { fontSize: "0.76rem", px: 1.1 } }}
+                      />
                     ))}
                     {project.stack.length > 5 ? (
                       <Chip
                         label={`+${project.stack.length - 5}`}
                         className="soft-chip"
+                        sx={{ "& .MuiChip-label": { fontSize: "0.76rem", px: 1.1 } }}
                       />
                     ) : null}
                   </Box>
@@ -133,7 +145,8 @@ function Projects() {
                         target="_blank"
                         rel="noreferrer"
                         variant="contained"
-                        endIcon={<ArrowUpRight size={18} />}
+                        endIcon={<ArrowUpRight size={16} />}
+                        size="medium"
                         sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         Visit Live Project
@@ -147,7 +160,8 @@ function Projects() {
                         target="_blank"
                         rel="noreferrer"
                         variant={project.liveUrl ? "outlined" : "contained"}
-                        endIcon={<Github size={18} />}
+                        endIcon={<Github size={16} />}
+                        size="medium"
                         sx={{ width: { xs: "100%", sm: "auto" } }}
                       >
                         View GitHub Repo

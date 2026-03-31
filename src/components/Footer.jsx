@@ -31,7 +31,7 @@ function Footer() {
           <Box component="span" sx={{ color: "primary.main", fontWeight: 700 }}>
             {profile.name}
           </Box>
-          . Designed for a modern frontend-first presentation.
+          . Designed for a modern web developer presentation.
         </Typography>
 
         <Button

@@ -33,6 +33,8 @@ export const portfolioData = {
   profile: {
     name: "Falgun Patel",
     role: "Web Developer",
+    headlineBase: "Building polished web experiences that feel",
+    headlineDynamicWords: ["sharp", "scalable", "production ready"],
     headline: "Building polished web experiences that feel sharp, scalable, and production ready.",
     intro:
       "Web developer currently pursuing an M.Sc. in Computer Science, with hands-on experience creating responsive dashboards, e-commerce websites, and full-stack products using React, JavaScript, Tailwind CSS, and REST APIs.",
@@ -101,7 +103,7 @@ export const portfolioData = {
   ],
   experiences: [
     {
-      title: "Frontend Developer Intern (React)",
+      title: "Web Developer Intern (React)",
       company: "Patrixel",
       period: "Jan 2026 - Present",
       location: "Pune, India",
@@ -150,11 +152,12 @@ export const portfolioData = {
       period: "Aug 2025 - Oct 2025",
       image: verseAiPreview,
       liveUrl: "https://verseaiuser.vercel.app/",
+      repoUrl: "https://github.com/Falgunp07/Verse-AI",
       stack: ["React", "Node.js", "Express", "PostgreSQL", "Clerk"],
       description:
         "A full-stack PERN product designed to route requests across multiple third-party AI services through a centralized API gateway.",
       highlights: [
-        "Built the frontend experience around utility workflows and subscription-aware user access.",
+        "Built the web experience around utility workflows and subscription-aware user access.",
         "Implemented authentication, usage limits, and subscription handling with Clerk.",
         "Validated and tested API behavior with Postman to keep request and response flows dependable.",
       ],
@@ -166,11 +169,12 @@ export const portfolioData = {
       period: "Jun 2025 - Aug 2025",
       image: edemyPreview,
       liveUrl: "https://mern-frontend-blue-one.vercel.app/",
+      repoUrl: "https://github.com/Falgunp07/MERN",
       stack: ["React", "MongoDB", "Express", "Node.js", "CI/CD"],
       description:
         "A MERN-based learning management experience with responsive layouts, authentication flow support, and production deployment on Vercel.",
       highlights: [
-        "Developed the responsive LMS frontend with clear course and learning flows.",
+        "Developed the responsive LMS web interface with clear course and learning flows.",
         "Integrated authentication and coordinated deployment through CI/CD on Vercel.",
         "Tested endpoints, auth flow, and error handling using Postman during integration.",
       ],

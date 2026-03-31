@@ -47,11 +47,11 @@ function Contact() {
         <Box className="contact-shell">
           <Box className="premium-card contact-main-card" sx={{ p: { xs: 3, md: 4 } }}>
             <Typography variant="h3" sx={{ mb: 1.4 }}>
-              Let's talk about your next frontend build.
+              Let's talk about your next web build.
             </Typography>
             <Typography sx={{ color: "text.secondary", lineHeight: 1.85, mb: 2.5, maxWidth: 640 }}>
               Whether it is a dashboard, product interface, freelance website, or a polished React
-              frontend, I enjoy building experiences that look intentional and feel smooth to use.
+              web app, I enjoy building experiences that look intentional and feel smooth to use.
             </Typography>
 
             <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap sx={{ mb: 3 }}>

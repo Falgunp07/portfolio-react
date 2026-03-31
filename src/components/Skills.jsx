@@ -11,8 +11,8 @@ function Skills() {
     <Box id="skills" component="section" sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: "96px" }}>
       <SectionHeading
         eyebrow="Skills"
-        title="A frontend stack built for interface quality and practical delivery."
-        description="I enjoy balancing visual craft with maintainable implementation, which is why my stack covers UI work, application flow, deployment, and API-ready frontend engineering."
+        title="A web development stack built for interface quality and practical delivery."
+        description="I enjoy balancing visual craft with maintainable implementation, which is why my stack covers UI work, application flow, deployment, and API-ready web engineering."
       />
 
       <Box

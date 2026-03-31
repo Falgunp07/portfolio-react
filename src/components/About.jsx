@@ -12,7 +12,7 @@ function About() {
       <SectionHeading
         eyebrow="About"
         title={about.title}
-        description="A concise snapshot of how I approach frontend development, product-quality interfaces, and real implementation work."
+        description="A concise snapshot of how I approach web development, product-quality interfaces, and real implementation work."
       />
 
       <Box
