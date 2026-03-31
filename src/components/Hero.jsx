@@ -42,7 +42,7 @@ function Hero() {
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", lg: "1.12fr 0.88fr" },
-              gap: { xs: 5, lg: 6 },
+              gap: { xs: 3.2, lg: 6 },
               alignItems: "center",
             }}
           >
@@ -53,16 +53,16 @@ function Hero() {
                 className="soft-chip"
                 sx={{
                   mb: 2.5,
-                  maxWidth: "fit-content",
-                  height: { xs: 32, sm: "auto" },
+                  maxWidth: { xs: "100%", sm: "fit-content" },
+                  height: "auto",
                   alignItems: "flex-start",
                   "& .MuiChip-icon": {
                     fontSize: { xs: "0.95rem", sm: "1rem" },
                   },
                   "& .MuiChip-label": {
                     display: "block",
-                    whiteSpace: "nowrap",
-                    py: { xs: 0.4, sm: 1 },
+                    whiteSpace: { xs: "normal", sm: "nowrap" },
+                    py: { xs: 0.65, sm: 1 },
                     px: { xs: 1.15, sm: 1.5 },
                     fontSize: { xs: "0.75rem", sm: "0.88rem" },
                     lineHeight: 1.45,
@@ -88,8 +88,8 @@ function Hero() {
                 sx={{
                   maxWidth: 820,
                   mb: 1.5,
-                  fontSize: { xs: "2.75rem", sm: "3.7rem", md: undefined },
-                  lineHeight: { xs: 1.04, sm: 1.02 },
+                  fontSize: { xs: "2.2rem", sm: "3.25rem", md: undefined },
+                  lineHeight: { xs: 1.08, sm: 1.02 },
                 }}
               >
                 {profile.name}
@@ -102,7 +102,7 @@ function Hero() {
                   color: "text.primary",
                   fontWeight: 500,
                   lineHeight: { xs: 1.2, sm: 1.35 },
-                  fontSize: { xs: "1.15rem", sm: "1.6rem", md: undefined },
+                  fontSize: { xs: "1rem", sm: "1.5rem", md: undefined },
                   mb: 2,
                 }}
               >
@@ -118,8 +118,8 @@ function Hero() {
                       transition={{ duration: 0.45, ease: "easeOut" }}
                       sx={{
                         display: "inline-block",
-                        whiteSpace: "nowrap",
-                        fontSize: { xs: "1.28rem", sm: "1.85rem", md: "2.05rem" },
+                        whiteSpace: { xs: "normal", sm: "nowrap" },
+                        fontSize: { xs: "1.12rem", sm: "1.75rem", md: "2.05rem" },
                         fontWeight: 700,
                         lineHeight: 1.05,
                         background: "linear-gradient(120deg, #b973ff 0%, #7d5fff 45%, #3ae7ff 100%)",
@@ -138,8 +138,8 @@ function Hero() {
                 sx={{
                   maxWidth: 690,
                   color: "text.secondary",
-                  fontSize: { xs: "0.98rem", sm: "1.05rem" },
-                  lineHeight: { xs: 1.75, sm: 1.9 },
+                  fontSize: { xs: "0.92rem", sm: "1.05rem" },
+                  lineHeight: { xs: 1.65, sm: 1.9 },
                   mb: 3,
                 }}
               >
@@ -183,7 +183,7 @@ function Hero() {
 
               <Stack
                 direction="row"
-                spacing={0.8}
+                spacing={0.55}
                 flexWrap="wrap"
                 useFlexGap
                 alignItems="center"
@@ -204,8 +204,8 @@ function Hero() {
                       sx={{
                         color: "text.secondary",
                         px: 0.15,
-                        py: 0.2,
-                        fontSize: { xs: "0.83rem", sm: "0.92rem" },
+                        py: 0.1,
+                        fontSize: { xs: "0.77rem", sm: "0.92rem" },
                         fontWeight: 500,
                         minWidth: 0,
                         justifyContent: "flex-start",
@@ -248,7 +248,7 @@ function Hero() {
                       width: "100%",
                       display: "block",
                       borderRadius: "28px",
-                      maxHeight: { xs: 500, md: 676 },
+                      maxHeight: { xs: 390, md: 676 },
                       objectFit: "cover",
                     }}
                   />

@@ -28,7 +28,7 @@ function Experience() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
           >
-            <Box className="premium-card timeline-card" sx={{ p: { xs: 3, md: 3.5 } }}>
+            <Box className="premium-card timeline-card" sx={{ p: { xs: 3, md: 3.5 }, textAlign: "left" }}>
               <Box
                 sx={{
                   display: "grid",
@@ -57,7 +57,7 @@ function Experience() {
                   {exp.bullets.map((item) => (
                     <Box key={item} sx={{ display: "flex", gap: 1.2 }}>
                       <Box className="bullet-dot" />
-                      <Typography sx={{ color: "text.secondary", lineHeight: 1.85, textAlign: "justify" }}>
+                      <Typography sx={{ color: "text.secondary", lineHeight: 1.85, textAlign: "left" }}>
                         {item}
                       </Typography>
                     </Box>

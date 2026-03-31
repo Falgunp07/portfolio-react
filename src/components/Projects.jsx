@@ -40,6 +40,7 @@ function Projects() {
                   gridTemplateColumns: { xs: "1fr", lg: "minmax(0, 0.95fr) minmax(0, 1.05fr)" },
                   gap: { xs: 1.8, md: 2.8 },
                   alignItems: "start",
+                  width: "100%",
                 }}
               >
                 <Box sx={{ display: "grid", gap: 1.25 }}>
@@ -80,7 +81,7 @@ function Projects() {
                     }}
                   >
                     {project.image ? (
-                      <Box className="project-media-shell" sx={{ minHeight: { xs: 220, md: 270 } }}>
+                      <Box className="project-media-shell" sx={{ minHeight: { xs: 180, sm: 220, md: 270 } }}>
                         <Box
                           component="img"
                           src={project.image}
@@ -98,7 +99,7 @@ function Projects() {
                       <Box
                         className="project-media-shell"
                         sx={{
-                          minHeight: { xs: 220, md: 270 },
+                          minHeight: { xs: 180, sm: 220, md: 270 },
                           display: "grid",
                           placeItems: "center",
                         }}
@@ -126,6 +127,7 @@ function Projects() {
                     flexDirection: "column",
                     height: "100%",
                     textAlign: "left",
+                    minWidth: 0,
                   }}
                 >
                   <Typography
@@ -138,7 +140,8 @@ function Projects() {
                       backgroundClip: project.descriptionGradient ? "text" : "initial",
                       WebkitTextFillColor: project.descriptionGradient ? "transparent" : "inherit",
                       fontWeight: project.descriptionGradient ? 600 : 400,
-                      textAlign: "justify",
+                      textAlign: "left",
+                      wordBreak: "break-word",
                     }}
                   >
                     {project.description}
@@ -153,7 +156,8 @@ function Projects() {
                             color: "text.secondary",
                             lineHeight: 1.72,
                             fontSize: "0.94rem",
-                            textAlign: "justify",
+                            textAlign: "left",
+                            wordBreak: "break-word",
                           }}
                         >
                           {highlight}
@@ -162,13 +166,13 @@ function Projects() {
                     ))}
                   </Stack>
 
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.8, mb: 2, minHeight: 52 }}>
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.65, mb: 2, minHeight: 52 }}>
                     {project.stack.map((tech) => (
                       <Chip
                         key={tech}
                         label={tech}
                         className="soft-chip"
-                        sx={{ "& .MuiChip-label": { fontSize: "0.76rem", px: 1.1 } }}
+                        sx={{ "& .MuiChip-label": { fontSize: { xs: "0.72rem", sm: "0.76rem" }, px: 1.1 } }}
                       />
                     ))}
                   </Box>

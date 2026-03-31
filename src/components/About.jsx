@@ -28,7 +28,7 @@ function About() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Box className="premium-card" sx={{ p: { xs: 3, md: 4 } }}>
+          <Box className="premium-card" sx={{ p: { xs: 3, md: 4 }, textAlign: "left" }}>
             {about.paragraphs.map((paragraph) => (
               <Typography
                 key={paragraph}
@@ -70,7 +70,7 @@ function About() {
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
               >
-                <Box className="premium-card" sx={{ p: 3 }}>
+                <Box className="premium-card" sx={{ p: 3, textAlign: "left" }}>
                   <Box className="icon-surface" sx={{ mb: 2 }}>
                     <Icon size={20} />
                   </Box>

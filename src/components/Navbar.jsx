@@ -206,7 +206,7 @@ function Navbar() {
           className="scroll-progress"
         />
       </Box>
-      <Box sx={{ height: { xs: "43px", md: "52px" } }} />
+      <Box sx={{ height: { xs: "78px", md: "96px" } }} />
 
       <Dialog fullScreen open={drawerOpen} onClose={handleDrawerToggle}>
         <Box

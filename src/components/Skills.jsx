@@ -33,7 +33,7 @@ function Skills() {
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
             >
-              <Box className="premium-card" sx={{ p: { xs: 3, md: 3.5 }, height: "100%" }}>
+              <Box className="premium-card" sx={{ p: { xs: 3, md: 3.5 }, height: "100%", textAlign: "left" }}>
                 <Box className="icon-surface" sx={{ mb: 2.5 }}>
                   <Icon size={20} />
                 </Box>
