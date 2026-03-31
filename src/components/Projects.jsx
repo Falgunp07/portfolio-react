@@ -37,72 +37,106 @@ function Projects() {
               <Box
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: { xs: "1fr", lg: "1fr 1fr" },
-                  gap: { xs: 2, md: 2.2 },
-                  alignItems: "center",
+                  gridTemplateColumns: { xs: "1fr", lg: "minmax(0, 0.95fr) minmax(0, 1.05fr)" },
+                  gap: { xs: 2.2, md: 2.8 },
+                  alignItems: "start",
                 }}
               >
-                {project.image ? (
-                  <Box className="project-media-shell">
-                    <Box
-                      component="img"
-                      src={project.image}
-                      alt={project.title}
+                <Box sx={{ display: "grid", gap: 1.25 }}>
+                  <Box sx={{ p: { xs: 0.2, md: 0.35 } }}>
+                    <Typography
+                      sx={{ color: "primary.main", fontWeight: 700, fontSize: "0.95rem", mb: 0.65 }}
+                    >
+                      {project.period}
+                    </Typography>
+                    <Typography
                       sx={{
-                        width: "100%",
-                        height: "100%",
-                        display: "block",
-                        borderRadius: "20px",
-                        objectFit: "cover",
+                        mb: 0.45,
+                        fontFamily: '"Space Grotesk", sans-serif',
+                        fontWeight: 700,
+                        fontSize: { xs: "1.45rem", md: "1.65rem" },
+                        lineHeight: 1.15,
                       }}
-                    />
+                    >
+                      {project.title}
+                    </Typography>
+                    <Typography
+                      sx={{ color: "secondary.light", mb: 0.2, fontWeight: 600, fontSize: "0.96rem" }}
+                    >
+                      {project.subtitle}
+                    </Typography>
                   </Box>
-                ) : (
-                  <Box
-                    className="project-media-shell"
-                    sx={{
-                      display: "grid",
-                      placeItems: "center",
-                    }}
-                  >
-                    <Box sx={{ textAlign: "center" }}>
-                      <Box className="icon-surface" sx={{ mx: "auto", mb: 1.1 }}>
-                        <Server size={18} />
-                      </Box>
-                      <Typography variant="h6" sx={{ mb: 0.4 }}>
-                        Backend Security Project
-                      </Typography>
-                      <Typography sx={{ color: "text.secondary", fontSize: "0.92rem" }}>
-                        Authentication and session architecture
-                      </Typography>
-                    </Box>
-                  </Box>
-                )}
 
-                <Box sx={{ p: { xs: 0.75, md: 1.1 } }}>
-                  <Typography sx={{ color: "primary.main", fontWeight: 700, fontSize: "0.95rem", mb: 0.8 }}>
-                    {project.period}
-                  </Typography>
-                  <Typography
+                  <Box
+                    component={project.liveUrl ? "a" : "div"}
+                    href={project.liveUrl || undefined}
+                    target={project.liveUrl ? "_blank" : undefined}
+                    rel={project.liveUrl ? "noreferrer" : undefined}
                     sx={{
-                      mb: 0.55,
-                      fontFamily: '"Space Grotesk", sans-serif',
-                      fontWeight: 700,
-                      fontSize: { xs: "1.45rem", md: "1.65rem" },
-                      lineHeight: 1.15,
+                      display: "block",
+                      textDecoration: "none",
+                      borderRadius: "24px",
+                      cursor: project.liveUrl ? "pointer" : "default",
                     }}
                   >
-                    {project.title}
-                  </Typography>
-                  <Typography sx={{ color: "secondary.light", mb: 1.5, fontWeight: 600, fontSize: "0.96rem" }}>
-                    {project.subtitle}
-                  </Typography>
+                    {project.image ? (
+                      <Box className="project-media-shell" sx={{ minHeight: { xs: 220, md: 270 } }}>
+                        <Box
+                          component="img"
+                          src={project.image}
+                          alt={project.title}
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            display: "block",
+                            borderRadius: "20px",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </Box>
+                    ) : (
+                      <Box
+                        className="project-media-shell"
+                        sx={{
+                          minHeight: { xs: 220, md: 270 },
+                          display: "grid",
+                          placeItems: "center",
+                        }}
+                      >
+                        <Box sx={{ textAlign: "center" }}>
+                          <Box className="icon-surface" sx={{ mx: "auto", mb: 1.1 }}>
+                            <Server size={18} />
+                          </Box>
+                          <Typography variant="h6" sx={{ mb: 0.4 }}>
+                            Backend Security Project
+                          </Typography>
+                          <Typography sx={{ color: "text.secondary", fontSize: "0.92rem" }}>
+                            Architecture and API workflow overview
+                          </Typography>
+                        </Box>
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
+
+                <Box
+                  sx={{
+                    p: { xs: 0.75, md: 1.1 },
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
+                  }}
+                >
                   <Typography
                     sx={{
                       color: "text.secondary",
                       lineHeight: 1.7,
                       fontSize: "0.98rem",
                       mb: 1.8,
+                      backgroundImage: project.descriptionGradient || "none",
+                      backgroundClip: project.descriptionGradient ? "text" : "initial",
+                      WebkitTextFillColor: project.descriptionGradient ? "transparent" : "inherit",
+                      fontWeight: project.descriptionGradient ? 600 : 400,
                     }}
                   >
                     {project.description}
@@ -120,7 +154,7 @@ function Projects() {
                   </Stack>
 
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.8, mb: 2, minHeight: 52 }}>
-                    {project.stack.slice(0, 5).map((tech) => (
+                    {project.stack.map((tech) => (
                       <Chip
                         key={tech}
                         label={tech}
@@ -128,16 +162,9 @@ function Projects() {
                         sx={{ "& .MuiChip-label": { fontSize: "0.76rem", px: 1.1 } }}
                       />
                     ))}
-                    {project.stack.length > 5 ? (
-                      <Chip
-                        label={`+${project.stack.length - 5}`}
-                        className="soft-chip"
-                        sx={{ "& .MuiChip-label": { fontSize: "0.76rem", px: 1.1 } }}
-                      />
-                    ) : null}
                   </Box>
 
-                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1.25}>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1.25} sx={{ mt: "auto", pt: 1.2 }}>
                     {project.liveUrl ? (
                       <Button
                         component="a"

@@ -19,6 +19,7 @@ import {
 import profilePhoto from "../assets/IMG_4301.JPG";
 import verseAiPreview from "../assets/verseai.png";
 import edemyPreview from "../assets/edemy.png";
+import propcallPreview from "../assets/Propcall.png";
 
 const certificateFile = (filename) => new URL(`../../Certificate/${filename}`, import.meta.url).href;
 
@@ -131,6 +132,36 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "PropCall AI",
+      subtitle: "Conversational Voice Agent SaaS",
+      period: "2026",
+      image: propcallPreview,
+      liveUrl: "https://ai-voice-agent-eosin.vercel.app/",
+      repoUrl: "https://github.com/Falgunp07/AI-Voice-Agent",
+      descriptionGradient: "linear-gradient(120deg, #a78bfa 0%, #60a5fa 55%, #22d3ee 100%)",
+      stack: [
+        "Next.js",
+        "Node.js",
+        "WebSockets",
+        "Supabase",
+        "Twilio",
+        "Deepgram STT",
+        "ElevenLabs TTS",
+        "Groq",
+        "Gemini",
+      ],
+      description:
+        "A production-focused conversational voice platform for real estate teams, built to run low-latency AI calls, manage multi-tenant merchant portals, and automate outbound campaign workflows.",
+      highlights: [
+        "Architected a real-time conversational voice engine using Node.js and WebSockets, integrating Twilio Media Streams with Deepgram STT and ElevenLabs/Sarvam TTS for low-latency, human-like interactions.",
+        "Built a resilient LLM orchestration layer with Groq (Llama 3.3 70B) and Gemini, including prompt engineering, conversation memory, interruption handling, and fallback logic.",
+        "Developed a secure multi-tenant Next.js dashboard with Supabase PostgreSQL, Row Level Security (RLS), and custom auth middleware for merchant/admin isolation.",
+        "Implemented an Auto-Dialer campaign system with CSV lead uploads, concurrent outbound calling, and live analytics for conversion, duration, and AI sentiment signals.",
+        "Hardened production reliability for 24/7 deployment with robust CORS setup, structured migrations, and error recovery for uninterrupted live-call streaming.",
+      ],
+      accent: "linear-gradient(135deg, rgba(125, 95, 255, 0.24), rgba(58, 231, 255, 0.16))",
+    },
+    {
       title: "Authentication System",
       subtitle: "Secure backend authentication API",
       period: "Mar 2026 - Apr 2026",
@@ -138,6 +169,7 @@ export const portfolioData = {
       stack: ["Node.js", "Express.js", "MongoDB", "JWT", "SHA-256", "Email OTP"],
       description:
         "A robust backend authentication service focused on secure identity management, persistent sessions, token lifecycle control, and hardened account protection.",
+      descriptionGradient: "linear-gradient(120deg, #6ee7b7 0%, #22d3ee 52%, #93c5fd 100%)",
       highlights: [
         "Built secure registration, identity, and authorization APIs using Node.js, Express.js, and MongoDB.",
         "Engineered dual-token JWT architecture with 15-minute access tokens and 7-day HTTP-only refresh tokens.",
@@ -156,10 +188,12 @@ export const portfolioData = {
       stack: ["React", "Node.js", "Express", "PostgreSQL", "Clerk"],
       description:
         "A full-stack PERN product designed to route requests across multiple third-party AI services through a centralized API gateway.",
+      descriptionGradient: "linear-gradient(120deg, #67e8f9 0%, #60a5fa 48%, #818cf8 100%)",
       highlights: [
-        "Built the web experience around utility workflows and subscription-aware user access.",
-        "Implemented authentication, usage limits, and subscription handling with Clerk.",
-        "Validated and tested API behavior with Postman to keep request and response flows dependable.",
+        "Designed and built the complete web experience around practical AI utility workflows, with subscription-aware access patterns and clear feature gating for different user plans.",
+        "Implemented end-to-end authentication, usage limits, and subscription lifecycle handling with Clerk, ensuring predictable account behavior across free and paid tiers.",
+        "Integrated multiple API-driven modules with stable request/response handling, including robust validation and error-state messaging for better user trust.",
+        "Validated and regression-tested API behavior with Postman to keep service interactions dependable across authentication, quota enforcement, and content generation flows.",
       ],
       accent: "linear-gradient(135deg, rgba(58, 231, 255, 0.2), rgba(58, 102, 255, 0.12))",
     },
@@ -173,10 +207,12 @@ export const portfolioData = {
       stack: ["React", "MongoDB", "Express", "Node.js", "CI/CD"],
       description:
         "A MERN-based learning management experience with responsive layouts, authentication flow support, and production deployment on Vercel.",
+      descriptionGradient: "linear-gradient(120deg, #fdba74 0%, #fda4af 48%, #f0abfc 100%)",
       highlights: [
-        "Developed the responsive LMS web interface with clear course and learning flows.",
-        "Integrated authentication and coordinated deployment through CI/CD on Vercel.",
-        "Tested endpoints, auth flow, and error handling using Postman during integration.",
+        "Developed a fully responsive LMS interface with structured course discovery, lesson navigation, and learner-focused progress flows across devices.",
+        "Implemented authentication-aware user journeys and role-sensitive routing to maintain secure and clean transitions between learning and account modules.",
+        "Coordinated CI/CD-driven deployment on Vercel with environment setup and production checks to keep releases stable and repeatable.",
+        "Tested endpoints, authentication flows, and error handling with Postman throughout integration to reduce runtime issues and improve reliability.",
       ],
       accent: "linear-gradient(135deg, rgba(255, 122, 89, 0.22), rgba(255, 199, 89, 0.12))",
     },
