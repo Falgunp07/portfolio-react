@@ -18,8 +18,7 @@ function About() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", lg: "1.2fr 0.8fr" },
-          gap: 3,
+          gap: { xs: 2.5, md: 3 },
           alignItems: "start",
         }}
       >
@@ -38,6 +37,9 @@ function About() {
                   fontSize: "1.03rem",
                   lineHeight: 1.9,
                   mb: 2.2,
+                  "&:last-of-type": {
+                    mb: 0,
+                  },
                 }}
               >
                 {paragraph}
@@ -49,7 +51,12 @@ function About() {
         <Box
           sx={{
             display: "grid",
-            gap: 2,
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, minmax(0, 1fr))",
+              lg: "repeat(3, minmax(0, 1fr))",
+            },
+            gap: 2.2,
           }}
         >
           {about.highlights.map((item, index) => {

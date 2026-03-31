@@ -32,14 +32,14 @@ export const portfolioData = {
   ],
   profile: {
     name: "Falgun Patel",
-    role: "Frontend Developer",
-    headline: "Building polished React interfaces that feel sharp, scalable, and production ready.",
+    role: "Web Developer",
+    headline: "Building polished web experiences that feel sharp, scalable, and production ready.",
     intro:
-      "Frontend developer currently pursuing an M.Sc. in Computer Science, with hands-on experience creating responsive dashboards, e-commerce experiences, and full-stack products using React, JavaScript, Tailwind CSS, and REST APIs.",
+      "Web developer currently pursuing an M.Sc. in Computer Science, with hands-on experience creating responsive dashboards, e-commerce websites, and full-stack products using React, JavaScript, Tailwind CSS, and REST APIs.",
     location: "Pune, India",
     email: "falgunpatel071@gmail.com",
     phone: "+91 9461573282",
-    availability: "Open to frontend roles, internships, and freelance collaborations.",
+    availability: "Open to web development roles, internships, and freelance collaborations.",
     resumeUrl: "/resume/Falgun-Patel-Resume.pdf",
     profileImage: profilePhoto,
     socialLinks: [
@@ -54,10 +54,10 @@ export const portfolioData = {
     ],
   },
   about: {
-    title: "Crafting frontend experiences with clean structure and strong UI instincts.",
+    title: "Crafting modern web experiences with clean structure and strong UI instincts.",
     paragraphs: [
-      "My core strength is turning product requirements into interfaces that feel clear, responsive, and trustworthy. I enjoy working on component systems, data-heavy dashboards, and user flows that need both visual polish and practical engineering.",
-      "Alongside frontend work, I have experience integrating REST APIs, handling authentication with Clerk and React Context, managing deployments on Vercel, and supporting production websites from build to launch.",
+      "My core strength is turning product requirements into web interfaces that feel clear, responsive, and trustworthy. I enjoy working on component systems, data-heavy dashboards, and user flows that need both visual polish and practical engineering.",
+      "Alongside UI work, I have experience integrating REST APIs, handling authentication with Clerk and React Context, managing deployments on Vercel, and supporting production websites from build to launch.",
     ],
     highlights: [
       {
@@ -68,7 +68,7 @@ export const portfolioData = {
       {
         icon: Settings2,
         title: "Product Thinking",
-        description: "Focus on practical UX, reliable edge states, and frontend flows that support business operations.",
+        description: "Focus on practical UX, reliable edge states, and web flows that support business operations.",
       },
       {
         icon: Rocket,
@@ -79,7 +79,7 @@ export const portfolioData = {
   },
   skills: [
     {
-      title: "Frontend Engineering",
+      title: "Web Engineering",
       icon: Code2,
       items: ["React", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Responsive Design"],
     },
@@ -264,7 +264,7 @@ export const portfolioData = {
   contact: {
     title: "Let's build something that looks sharp and works hard.",
     description:
-      "I'm open to frontend opportunities, internships, and freelance work where strong UI execution and dependable implementation matter.",
-    chips: ["React UI", "Dashboard Frontends", "API Integration", "Freelance Projects"],
+      "I'm open to web development opportunities, internships, and freelance work where strong UI execution and dependable implementation matter.",
+    chips: ["React UI", "Dashboard Websites", "API Integration", "Freelance Projects"],
   },
 };
