@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Server } from "lucide-react";
 import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import SectionHeading from "./SectionHeading";
 import { portfolioData } from "../data/portfolioData";
@@ -40,18 +40,41 @@ function Projects() {
                   alignItems: "center",
                 }}
               >
-                <Box className="project-media-shell">
+                {project.image ? (
+                  <Box className="project-media-shell">
+                    <Box
+                      component="img"
+                      src={project.image}
+                      alt={project.title}
+                      sx={{
+                        width: "100%",
+                        display: "block",
+                        borderRadius: "24px",
+                      }}
+                    />
+                  </Box>
+                ) : (
                   <Box
-                    component="img"
-                    src={project.image}
-                    alt={project.title}
+                    className="project-media-shell"
                     sx={{
-                      width: "100%",
-                      display: "block",
-                      borderRadius: "24px",
+                      minHeight: { xs: 160, md: 220 },
+                      display: "grid",
+                      placeItems: "center",
                     }}
-                  />
-                </Box>
+                  >
+                    <Box sx={{ textAlign: "center" }}>
+                      <Box className="icon-surface" sx={{ mx: "auto", mb: 1.5 }}>
+                        <Server size={20} />
+                      </Box>
+                      <Typography variant="h5" sx={{ mb: 0.6 }}>
+                        Backend Security Project
+                      </Typography>
+                      <Typography sx={{ color: "text.secondary" }}>
+                        Authentication and session architecture
+                      </Typography>
+                    </Box>
+                  </Box>
+                )}
 
                 <Box sx={{ p: { xs: 1, md: 1.5 } }}>
                   <Typography sx={{ color: "primary.main", fontWeight: 700, mb: 1 }}>
@@ -84,17 +107,35 @@ function Projects() {
                     ))}
                   </Box>
 
-                  <Button
-                    component="a"
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    variant="contained"
-                    endIcon={<ArrowUpRight size={18} />}
-                    sx={{ width: { xs: "100%", sm: "auto" } }}
-                  >
-                    Visit Live Project
-                  </Button>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1.25}>
+                    {project.liveUrl ? (
+                      <Button
+                        component="a"
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        variant="contained"
+                        endIcon={<ArrowUpRight size={18} />}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
+                      >
+                        Visit Live Project
+                      </Button>
+                    ) : null}
+
+                    {project.repoUrl ? (
+                      <Button
+                        component="a"
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        variant={project.liveUrl ? "outlined" : "contained"}
+                        endIcon={<Github size={18} />}
+                        sx={{ width: { xs: "100%", sm: "auto" } }}
+                      >
+                        View GitHub Repo
+                      </Button>
+                    ) : null}
+                  </Stack>
                 </Box>
               </Box>
             </Box>

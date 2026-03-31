@@ -13,6 +13,7 @@ import {
   Rocket,
   ScanSearch,
   Settings2,
+  ShieldCheck,
   Smartphone,
 } from "lucide-react";
 import profilePhoto from "../assets/IMG_4301.JPG";
@@ -128,6 +129,22 @@ export const portfolioData = {
   ],
   projects: [
     {
+      title: "Authentication System",
+      subtitle: "Secure backend authentication API",
+      period: "Mar 2026 - Apr 2026",
+      repoUrl: "https://github.com/Falgunp07/Authentication-Backend",
+      stack: ["Node.js", "Express.js", "MongoDB", "JWT", "SHA-256", "Email OTP"],
+      description:
+        "A robust backend authentication service focused on secure identity management, persistent sessions, token lifecycle control, and hardened account protection.",
+      highlights: [
+        "Built secure registration, identity, and authorization APIs using Node.js, Express.js, and MongoDB.",
+        "Engineered dual-token JWT architecture with 15-minute access tokens and 7-day HTTP-only refresh tokens.",
+        "Implemented automated email verification using time-sensitive OTP flows and custom HTML email templates.",
+        "Added device session tracking for remote logout and applied SHA-256 hashing for password and token safety.",
+      ],
+      accent: "linear-gradient(135deg, rgba(67, 196, 143, 0.2), rgba(58, 231, 255, 0.1))",
+    },
+    {
       title: "Verse AI",
       subtitle: "Multi-service AI utility platform",
       period: "Aug 2025 - Oct 2025",
@@ -209,6 +226,13 @@ export const portfolioData = {
       year: "2025",
       icon: ArrowUpRight,
       fileUrl: certificateFile("Microsoft - Web Development Workshop.pdf"),
+    },
+    {
+      title: "Participation Certificate",
+      issuer: "Naukri Campus",
+      year: "2026",
+      icon: ShieldCheck,
+      fileUrl: certificateFile("NaukriCampus_Certificate_Participation.pdf"),
     },
   ],
   education: [
