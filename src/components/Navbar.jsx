@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import {
   Box,
   Button,
-  Container,
   Dialog,
   IconButton,
   Stack,
@@ -17,42 +16,88 @@ function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeHref, setActiveHref] = useState("#about");
+  const navRef = useRef(null);
+  const manualActiveLockUntil = useRef(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { scrollYProgress } = useScroll();
   const navLinks = useMemo(() => portfolioData.navigation, []);
   const MotionDiv = motion.div;
+  const titleGapBefore = 20;
+
+  const getNavOffset = () => {
+    const navHeight = navRef.current?.getBoundingClientRect().height ?? (isMobile ? 72 : 84);
+    return navHeight + titleGapBefore;
+  };
+
+  const getSectionTop = (href) => {
+    const section = document.querySelector(href);
+    if (!section) {
+      return null;
+    }
+
+    const headingBlock = section.firstElementChild;
+    const targetElement = headingBlock || section;
+    return targetElement.getBoundingClientRect().top + window.scrollY;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 18);
+      if (Date.now() < manualActiveLockUntil.current) {
+        return;
+      }
 
-      const visibleSection = navLinks
+      const navOffset = getNavOffset();
+      const sections = navLinks
         .map((link) => {
-          const element = document.querySelector(link.href);
-          if (!element) {
+          const top = getSectionTop(link.href);
+          if (top === null) {
             return null;
           }
 
           return {
             href: link.href,
-            top: element.getBoundingClientRect().top,
+            top,
           };
         })
-        .filter(Boolean)
-        .reverse()
-        .find((section) => section.top <= 140);
+        .filter(Boolean);
 
-      if (visibleSection) {
-        setActiveHref(visibleSection.href);
+      if (!sections.length) {
+        return;
       }
+
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - (navOffset + 24);
+
+      if (nearBottom) {
+        setActiveHref(sections[sections.length - 1].href);
+        return;
+      }
+
+      const currentAnchor = window.scrollY + navOffset;
+      let matchedHref = sections[0].href;
+
+      for (let index = 0; index < sections.length; index += 1) {
+        const current = sections[index];
+        const next = sections[index + 1];
+        const inRange = currentAnchor >= current.top && (!next || currentAnchor < next.top);
+
+        if (inRange) {
+          matchedHref = current.href;
+          break;
+        }
+      }
+
+      setActiveHref(matchedHref);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks]);
+  }, [navLinks, isMobile]);
 
   const handleDrawerToggle = () => {
     setDrawerOpen((prev) => !prev);
@@ -60,10 +105,12 @@ function Navbar() {
 
   const handleNavClick = (href) => {
     setDrawerOpen(false);
-    const element = document.querySelector(href);
+    setActiveHref(href);
+    manualActiveLockUntil.current = Date.now() + 1200;
+    const sectionTop = getSectionTop(href);
 
-    if (element) {
-      const offsetTop = element.offsetTop - 96;
+    if (sectionTop !== null) {
+      const offsetTop = sectionTop - getNavOffset();
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
@@ -74,33 +121,39 @@ function Navbar() {
   return (
     <>
       <Box
+        ref={navRef}
         component="nav"
         sx={{
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
+          width: "100vw",
           zIndex: 20,
-          pt: { xs: 1.25, md: 2 },
+          m: 0,
+          p: 0,
+          borderRadius: 0,
+          borderBottom: "1px solid rgba(129, 173, 255, 0.2)",
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.62) 100%)",
+          backdropFilter: scrolled ? "blur(24px) saturate(155%)" : "blur(16px) saturate(135%)",
+          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(155%)" : "blur(16px) saturate(135%)",
+          boxShadow: scrolled ? "0 12px 30px rgba(15, 23, 42, 0.12)" : "none",
+          transition: "box-shadow 0.25s ease",
         }}
       >
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 2,
-              px: { xs: 1.25, md: 2.5 },
-              py: { xs: 1.1, md: 1.5 },
-              borderRadius: 999,
-              border: "1px solid rgba(129, 173, 255, 0.24)",
-              background: scrolled ? "rgba(255, 255, 255, 0.92)" : "rgba(255, 255, 255, 0.72)",
-              backdropFilter: "blur(18px)",
-              boxShadow: scrolled ? "0 16px 34px rgba(15, 23, 42, 0.12)" : "none",
-              transition: "all 0.3s ease",
-            }}
-          >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 2,
+            width: "100%",
+            px: { xs: 1.1, md: 2.2 },
+            py: { xs: 0.9, md: 1.05 },
+            borderRadius: 0,
+          }}
+        >
             <Box
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               sx={{
@@ -198,15 +251,14 @@ function Navbar() {
                 <Menu size={20} />
               </IconButton>
             )}
-          </Box>
-        </Container>
+        </Box>
 
         <MotionDiv
           style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
           className="scroll-progress"
         />
       </Box>
-      <Box sx={{ height: { xs: "78px", md: "96px" } }} />
+      <Box sx={{ height: { xs: "72px", md: "84px" } }} />
 
       <Dialog fullScreen open={drawerOpen} onClose={handleDrawerToggle}>
         <Box
