@@ -92,7 +92,15 @@ function CertificateDialog({ certificate, open, onClose }) {
             </Button>
             <IconButton
               onClick={onClose}
-              sx={{ color: "text.primary", alignSelf: { xs: "flex-end", sm: "center" } }}
+              sx={{
+                color: "#f6fbff",
+                border: "1px solid rgba(255,255,255,0.16)",
+                bgcolor: "rgba(255,255,255,0.06)",
+                alignSelf: { xs: "flex-end", sm: "center" },
+                "&:hover": {
+                  bgcolor: "rgba(255,255,255,0.12)",
+                },
+              }}
               aria-label="Close certificate viewer"
             >
               <X size={22} />
