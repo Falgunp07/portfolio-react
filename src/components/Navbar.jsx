@@ -94,10 +94,10 @@ function Navbar() {
               px: { xs: 1.25, md: 2.5 },
               py: { xs: 1.1, md: 1.5 },
               borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: scrolled ? "rgba(8, 18, 32, 0.84)" : "rgba(8, 18, 32, 0.55)",
+              border: "1px solid rgba(129, 173, 255, 0.24)",
+              background: scrolled ? "rgba(255, 255, 255, 0.92)" : "rgba(255, 255, 255, 0.72)",
               backdropFilter: "blur(18px)",
-              boxShadow: scrolled ? "0 18px 45px rgba(0, 0, 0, 0.24)" : "none",
+              boxShadow: scrolled ? "0 16px 34px rgba(15, 23, 42, 0.12)" : "none",
               transition: "all 0.3s ease",
             }}
           >
@@ -125,9 +125,9 @@ function Navbar() {
                   borderRadius: "14px",
                   display: "grid",
                   placeItems: "center",
-                  color: "#06101d",
-                  background: "linear-gradient(135deg, #3ae7ff, #ff7a59)",
-                  boxShadow: "0 10px 24px rgba(58, 231, 255, 0.25)",
+                  color: "#0d1322",
+                  background: "linear-gradient(135deg, #5cc8ff, #ff6fae)",
+                  boxShadow: "0 10px 24px rgba(92, 200, 255, 0.25)",
                 }}
               >
                 FP
@@ -153,19 +153,19 @@ function Navbar() {
                     key={link.label}
                     onClick={() => handleNavClick(link.href)}
                     sx={{
-                      color: activeHref === link.href ? "#06101d" : "text.primary",
+                      color: activeHref === link.href ? "#0d1322" : "text.primary",
                       fontSize: "0.95rem",
                       fontWeight: 600,
                       px: 2.1,
                       background:
                         activeHref === link.href
-                          ? "linear-gradient(135deg, #3ae7ff, #8bf7ff)"
+                          ? "linear-gradient(135deg, #5cc8ff, #9fe2ff)"
                           : "transparent",
                       "&:hover": {
                         background:
                           activeHref === link.href
-                            ? "linear-gradient(135deg, #3ae7ff, #8bf7ff)"
-                            : "rgba(255,255,255,0.05)",
+                            ? "linear-gradient(135deg, #5cc8ff, #9fe2ff)"
+                            : "rgba(37,99,235,0.06)",
                       },
                     }}
                   >
@@ -191,8 +191,8 @@ function Navbar() {
                 onClick={handleDrawerToggle}
                 sx={{
                   color: "primary.main",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  bgcolor: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(37,99,235,0.16)",
+                  bgcolor: "rgba(37,99,235,0.06)",
                 }}
               >
                 <Menu size={20} />
@@ -218,7 +218,7 @@ function Navbar() {
             display: "flex",
             flexDirection: "column",
             backgroundImage:
-              "radial-gradient(circle at top left, rgba(58, 231, 255, 0.16), transparent 28%), radial-gradient(circle at bottom right, rgba(255, 122, 89, 0.14), transparent 30%)",
+              "radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 30%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.1), transparent 32%)",
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

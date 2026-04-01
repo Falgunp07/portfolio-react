@@ -16,26 +16,26 @@ const Certificates = lazy(() => import("./components/Certificates"));
 function App() {
   const theme = createTheme({
     palette: {
-      mode: "dark",
+      mode: "light",
       primary: {
-        main: "#3ae7ff",
-        light: "#89f3ff",
-        dark: "#00bdd7",
+        main: "#2563eb",
+        light: "#60a5fa",
+        dark: "#1d4ed8",
       },
       secondary: {
-        main: "#ff7a59",
-        light: "#ffb39f",
-        dark: "#ef5f3b",
+        main: "#ec4899",
+        light: "#f472b6",
+        dark: "#db2777",
       },
       background: {
-        default: "#07111f",
-        paper: "rgba(12, 23, 42, 0.88)",
+        default: "#f6f8fc",
+        paper: "rgba(255, 255, 255, 0.9)",
       },
       text: {
-        primary: "#f6fbff",
-        secondary: "#9fb4c8",
+        primary: "#0f172a",
+        secondary: "#475569",
       },
-      divider: "rgba(255, 255, 255, 0.08)",
+      divider: "rgba(15, 23, 42, 0.12)",
     },
     typography: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
@@ -79,7 +79,7 @@ function App() {
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            backgroundColor: "#07111f",
+            backgroundColor: "#f6f8fc",
           },
         },
       },
@@ -101,16 +101,16 @@ function App() {
             },
           },
           contained: {
-            background: "linear-gradient(135deg, #3ae7ff 0%, #1f88ff 100%)",
-            color: "#06101d",
+            background: "linear-gradient(135deg, #2563eb 0%, #ec4899 100%)",
+            color: "#ffffff",
             "&:hover": {
-              background: "linear-gradient(135deg, #5af0ff 0%, #3b97ff 100%)",
+              background: "linear-gradient(135deg, #3b82f6 0%, #f472b6 100%)",
             },
           },
           outlined: {
             borderWidth: "1px",
-            borderColor: "rgba(255,255,255,0.12)",
-            background: "rgba(255,255,255,0.02)",
+            borderColor: "rgba(37,99,235,0.2)",
+            background: "rgba(37,99,235,0.04)",
             "&:hover": {
               borderWidth: "1px",
             },
