@@ -47,7 +47,7 @@ export const portfolioData = {
     profileImage: profilePhoto,
     socialLinks: [
       { label: "GitHub", href: "https://github.com/Falgunp07", icon: Github },
-      { label: "LinkedIn", href: "https://linkedin.com/in/falgun-patel-7386701b0", icon: Linkedin },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/falgun-patel07/", icon: Linkedin },
       { label: "Email", href: "mailto:falgunpatel071@gmail.com", icon: Mail },
     ],
     stats: [

@@ -131,7 +131,7 @@ function Contact() {
                 </Button>
                 <Button
                   component="a"
-                  href="https://linkedin.com/in/falgun-patel-7386701b0"
+                  href="https://www.linkedin.com/in/falgun-patel07/"
                   target="_blank"
                   rel="noreferrer"
                   variant="outlined"
