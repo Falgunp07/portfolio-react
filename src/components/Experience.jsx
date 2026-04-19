@@ -41,9 +41,36 @@ function Experience() {
                   <Typography variant="h4" sx={{ mb: 1 }}>
                     {exp.title}
                   </Typography>
-                  <Typography sx={{ color: "primary.main", fontWeight: 700, mb: 0.65 }}>
-                    {exp.company}
-                  </Typography>
+                  <Box sx={{ mb: 0.65 }}>
+                    <Typography sx={{ color: "primary.main", fontWeight: 700, display: "inline" }}>
+                      {exp.companyUrl ? (
+                        <Box
+                          component="a"
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{
+                            color: "primary.main",
+                            textDecoration: "none",
+                            cursor: "pointer",
+                            fontWeight: 700,
+                            "&:hover": {
+                              textDecoration: "underline",
+                            },
+                          }}
+                        >
+                          {exp.company.split(" (")[0]}
+                        </Box>
+                      ) : (
+                        exp.company.split(" (")[0]
+                      )}
+                    </Typography>
+                    {exp.company.includes("(Freelance)") && (
+                      <Typography sx={{ color: "text.secondary", fontSize: "0.95rem", mt: 0.3 }}>
+                        (Freelance)
+                      </Typography>
+                    )}
+                  </Box>
                   <Typography sx={{ color: "text.secondary", mb: 0.35 }}>{exp.period}</Typography>
                   <Typography sx={{ color: "text.secondary", mb: 2 }}>{exp.location}</Typography>
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>

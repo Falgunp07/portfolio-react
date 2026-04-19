@@ -107,7 +107,7 @@ export const portfolioData = {
       title: "Web Developer Intern (React)",
       company: "Patrixel",
       period: "Jan 2026 - Present",
-      location: "Pune, India",
+      location: "Remote",
       tags: ["React", "Vite", "Tailwind CSS", "REST APIs"],
       bullets: [
         "Developed responsive React dashboards using hooks, Context API, and Tailwind CSS with 15+ reusable UI components for admin and merchant portals.",
@@ -119,6 +119,7 @@ export const portfolioData = {
     {
       title: "Website Developer",
       company: "caliz.online (Freelance)",
+      companyUrl: "https://caliz.online",
       period: "Jun 2025 - Oct 2025",
       location: "Remote",
       tags: ["WordPress", "WooCommerce", "SEO", "Deployment"],
