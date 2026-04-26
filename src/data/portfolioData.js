@@ -20,6 +20,7 @@ import profilePhoto from "../assets/IMG_4301.JPG";
 import verseAiPreview from "../assets/verseai.png";
 import edemyPreview from "../assets/edemy.png";
 import propcallPreview from "../assets/Propcall.png";
+import arenaIQPreview from "../assets/ArenaIQ.png";
 
 const certificateFile = (filename) => new URL(`../../Certificate/${filename}`, import.meta.url).href;
 
@@ -161,6 +162,35 @@ export const portfolioData = {
         "Hardened production reliability for 24/7 deployment with robust CORS setup, structured migrations, and error recovery for uninterrupted live-call streaming.",
       ],
       accent: "linear-gradient(135deg, rgba(125, 95, 255, 0.24), rgba(58, 231, 255, 0.16))",
+    },
+    {
+      title: "ArenaIQ",
+      subtitle: "Full-stack smart stadium platform with real-time crowd intelligence",
+      period: "2026",
+      image: arenaIQPreview,
+      liveUrl: "https://arena-iq.vercel.app/",
+      repoUrl: "https://github.com/Falgunp07/ArenaIQ",
+      descriptionGradient: "linear-gradient(120deg, #ff6b9d 0%, #c44569 55%, #ffa502 100%)",
+      stack: [
+        "React",
+        "Node.js",
+        "Express",
+        "Firebase Firestore",
+        "Python ML",
+        "OpenStreetMap",
+        "Leaflet",
+        "scikit-learn",
+      ],
+      description:
+        "A production-grade full-stack smart stadium platform delivering real-time crowd intelligence, live monitoring dashboards, and ML-powered recommendations for attendees and operations teams.",
+      highlights: [
+        "Built a full-stack architecture with React frontend, Node.js/Express backend, Firebase Firestore real-time database, and Python ML pipeline for intelligent crowd analytics.",
+        "Engineered live crowd monitoring with OpenStreetMap + Leaflet integration, Firestore realtime streams for zone-level density tracking, and operational alerting across gates, concessions, and restrooms.",
+        "Developed and deployed an ML recommendation engine using scikit-learn Random Forest to predict optimal entry gates and wait times, with automated inference surfaced in attendee and staff dashboards.",
+        "Implemented AI-assisted operations workflows with tool-calling chat, staff summaries, and optimized system responsiveness by configuring crowd and recommendation refresh cycles to 7-second intervals for near real-time decision support.",
+        "Delivered a scalable, production-ready platform combining geospatial visualization, real-time data streaming, and predictive intelligence to improve stadium operations and visitor experience.",
+      ],
+      accent: "linear-gradient(135deg, rgba(255, 107, 157, 0.24), rgba(255, 165, 2, 0.16))",
     },
     {
       title: "Authentication System",
