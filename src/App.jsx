@@ -162,10 +162,10 @@ function App() {
         <Box sx={{ position: "relative", flexGrow: 1, zIndex: 1 }}>
           <Hero />
           <Container maxWidth="xl" sx={{ pb: { xs: 8, md: 10 } }}>
-            <About />
             <Experience />
-            <Skills />
             <Projects />
+            <Skills />
+            <About />
             <Suspense
               fallback={
                 <Box

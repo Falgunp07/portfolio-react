@@ -21,15 +21,17 @@ import verseAiPreview from "../assets/verseai.png";
 import edemyPreview from "../assets/edemy.png";
 import propcallPreview from "../assets/Propcall.png";
 import arenaIQPreview from "../assets/ArenaIQ.png";
+import resumePDF from "../assets/RESUME.pdf";
 
 const certificateFile = (filename) => new URL(`../../Certificate/${filename}`, import.meta.url).href;
 
 export const portfolioData = {
   navigation: [
-    { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
-    { label: "Certificates", href: "#certificates" },
+    { label: "Skills", href: "#skills" },
+    { label: "About", href: "#about" },
+    { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ],
   profile: {
@@ -44,7 +46,7 @@ export const portfolioData = {
     email: "falgunpatel071@gmail.com",
     phone: "+91 9461573282",
     availability: "Open to web development roles, internships, and freelance collaborations.",
-    resumeUrl: "/resume/Falgun-Patel-Resume.pdf",
+    resumeUrl: resumePDF,
     profileImage: profilePhoto,
     socialLinks: [
       { label: "GitHub", href: "https://github.com/Falgunp07", icon: Github },
