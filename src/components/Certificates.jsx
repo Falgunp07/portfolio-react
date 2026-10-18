@@ -57,7 +57,7 @@ function CertificateDialog({ certificate, open, onClose }) {
           }}
         >
           <Box>
-            <Typography variant="h5">{certificate?.title}</Typography>
+            <Typography variant="h5">{certificate?.fullTitle || certificate?.title}</Typography>
             <Typography sx={{ color: "text.secondary" }}>
               {certificate?.issuer} | {certificate?.year}
             </Typography>
@@ -141,7 +141,7 @@ function CertificateCard({ certificate, onOpen }) {
   const MotionDiv = motion.div;
 
   return (
-    <MotionDiv {...motionSettings}>
+    <MotionDiv {...motionSettings} style={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <Box
         onClick={() => onOpen(certificate)}
         onKeyDown={(event) => {
@@ -173,17 +173,18 @@ function CertificateCard({ certificate, onOpen }) {
             gap: 2,
           }}
         >
-          <Stack direction="row" spacing={1.5} alignItems="center" sx={{ flex: 1 }}>
-            <Box className="icon-surface">
+          <Stack direction="row" spacing={1.5} alignItems="center" sx={{ flex: 1, minWidth: 0 }}>
+            <Box className="icon-surface" sx={{ flexShrink: 0 }}>
               <Icon size={18} />
             </Box>
-            <Box>
+            <Box sx={{ minWidth: 0, flex: 1 }}>
               <Typography
                 variant="h6"
+                title={certificate.fullTitle || certificate.title}
                 sx={{
                   fontSize: "1rem",
                   display: "-webkit-box",
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 1,
                   WebkitBoxOrient: "vertical",
                   overflow: "hidden",
                   lineHeight: 1.25,
@@ -209,7 +210,7 @@ function CertificateCard({ certificate, onOpen }) {
             label={certificate.year}
             size="small"
             className="soft-chip"
-            sx={{ alignSelf: { xs: "flex-end", sm: "center" } }}
+            sx={{ alignSelf: { xs: "flex-end", sm: "center" }, flexShrink: 0 }}
           />
         </Box>
 
@@ -274,7 +275,7 @@ function Certificates() {
             md: "repeat(3, minmax(0, 1fr))",
           },
           gap: { xs: 1.8, md: 2.1, lg: 2.3 },
-          alignItems: "start",
+          alignItems: "stretch",
         }}
       >
         {certificates.map((certificate) => (
