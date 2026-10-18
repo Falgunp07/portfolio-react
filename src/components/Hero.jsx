@@ -80,7 +80,7 @@ function Hero() {
                   mb: 1.5,
                 }}
               >
-                Web Developer Portfolio
+                Software & AI Developer Portfolio
               </Typography>
 
               <Typography
@@ -234,9 +234,9 @@ function Hero() {
                 className="hero-visual-shell"
                 sx={{
                   mt: { xs: 0.5, md: 0 },
-                  width: { xs: "100%", md: "100%", lg: "100%" },
-                  ml: "auto",
-                  mr: "auto",
+                  width: "100%",
+                  maxWidth: { xs: 340, sm: 390, md: 430, lg: 440 },
+                  mx: "auto",
                 }}
               >
                 <Box className="hero-image-frame">
@@ -246,10 +246,10 @@ function Hero() {
                     alt={profile.name}
                     sx={{
                       width: "100%",
+                      height: "auto",
                       display: "block",
                       borderRadius: "28px",
-                      maxHeight: { xs: 390, md: 676 },
-                      objectFit: "cover",
+                      objectFit: "contain",
                     }}
                   />
                 </Box>

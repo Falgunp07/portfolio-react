@@ -3,6 +3,7 @@ import {
   Award,
   BadgeCheck,
   BriefcaseBusiness,
+  Cloud,
   Code2,
   DatabaseZap,
   Figma,
@@ -16,7 +17,7 @@ import {
   ShieldCheck,
   Smartphone,
 } from "lucide-react";
-import profilePhoto from "../assets/IMG_4301.JPG";
+import profilePhoto from "../assets/profile-photo.png";
 import verseAiPreview from "../assets/verseai.png";
 import edemyPreview from "../assets/edemy.png";
 import propcallPreview from "../assets/Propcall.png";
@@ -41,11 +42,11 @@ export const portfolioData = {
     headlineDynamicWords: ["sharp", "scalable", "production ready"],
     headline: "Building polished web experiences that feel sharp, scalable, and production ready.",
     intro:
-      "Web developer currently pursuing an M.Sc. in Computer Science, with hands-on experience creating responsive dashboards, e-commerce websites, and full-stack products using React, JavaScript, Tailwind CSS, and REST APIs.",
+      "M.Sc. Computer Science student and Software Developer with experience in full-stack development, AI benchmarking, and AI-powered applications. Skilled in React, Node.js, Python, REST APIs, Docker, PostgreSQL, and MongoDB, with hands-on experience building backend systems, automated testing and validation pipelines, and reproducible development environments. Experienced as an AI Benchmark Contributor at Handshake AI, designing coding-agent evaluation tasks and deterministic test frameworks, and as a Data Annotation Expert at Mercor, with a strong focus on AI data quality and evaluation workflows.",
     location: "Pune, India",
     email: "falgunpatel071@gmail.com",
     phone: "+91 9461573282",
-    availability: "Open to web development roles, internships, and freelance collaborations.",
+    availability: "Open to Software Engineering, AI Evaluation/Training & Freelance Roles",
     resumeUrl: resumePDF,
     profileImage: profilePhoto,
     socialLinks: [
@@ -107,30 +108,55 @@ export const portfolioData = {
   ],
   experiences: [
     {
-      title: "Web Developer Intern (React)",
-      company: "Patrixel",
-      period: "Jan 2026 - Present",
+      title: "Data Annotation Expert | Contract",
+      company: "Mercor",
+      period: "Sep 2026 - Sep 2026",
       location: "Remote",
-      tags: ["React", "Vite", "Tailwind CSS", "REST APIs"],
+      tags: ["Data Annotation", "OCR & Transcription", "Quality Assurance", "PDF Datasets"],
       bullets: [
-        "Developed responsive React dashboards using hooks, Context API, and Tailwind CSS with 15+ reusable UI components for admin and merchant portals.",
-        "Integrated RESTful APIs for authentication and user management with focused error handling and data transformation.",
-        "Built searchable data tables with multi-column sorting, pagination, and role-based filtering for admin workflows.",
-        "Implemented client-side authentication state management with React Context, localStorage persistence, and protected route navigation.",
+        "Performed 25+ document annotation and text transcription for PDF-based datasets, following detailed annotation guidelines and quality standards.",
+        "Annotated document elements including text, titles, section headers, lists, tables, pictures, captions, and page headers/footers.",
+        "Transcribed Gujarati content accurately, preserving original script, punctuation, numerals, formatting, and line structure.",
+        "Reviewed and corrected annotations for accuracy and consistency, ensuring outputs met project-specific quality requirements.",
       ],
     },
     {
-      title: "Website Developer",
+      title: "AI Benchmark Contributor | Contract",
+      company: "Handshake AI",
+      period: "Jul 2026 - Aug 2026",
+      location: "Remote",
+      tags: ["Python", "Docker", "AI Benchmarking", "Testing Frameworks"],
+      bullets: [
+        "Designed three end-to-end software engineering benchmark tasks for evaluating frontier language models.",
+        "Built reproducible Docker environments, automated validation pipelines, and deterministic test frameworks for backend evaluation.",
+        "Developed oracle solutions, Python automation scripts, and verification workflows for AI benchmarking.",
+        "Created complex evaluation scenarios involving debugging, API validation, backend infrastructure, and distributed software systems.",
+      ],
+    },
+    {
+      title: "Frontend Developer Intern | Internship",
+      company: "Patrixel",
+      period: "Jan 2026 - Jun 2026",
+      location: "Remote",
+      tags: ["React", "Context API", "Tailwind CSS", "REST APIs"],
+      bullets: [
+        "Developed a responsive ReferValue Card system and engineered over 15 reusable UI components using React, Context API, and Tailwind CSS, reducing front-end development time by 20% for future portal features.",
+        "Interfaced with the backend team to integrate RESTful APIs, implementing client-side error handling, data transformation pipelines, and secure session persistence via localStorage and protected routing.",
+        "Built functional admin interfaces featuring data tables with search capabilities, multi-column sorting, pagination, and role-based data filtering.",
+        "Conducted thorough testing, input validation audits and API tracking across 3 web apps in the final month to identify bugs, resolve runtime errors, and ensure production readiness.",
+      ],
+    },
+    {
+      title: "Website Developer | Freelance",
       company: "caliz.online (Freelance)",
       companyUrl: "https://caliz.online",
-      period: "Jun 2025 - Oct 2025",
+      period: "Jun 2025 - Nov 2025",
       location: "Remote",
       tags: ["WordPress", "WooCommerce", "SEO", "Deployment"],
       bullets: [
-        "Developed and deployed a complete WordPress and WooCommerce e-commerce website, including store setup, product configuration, and payment integration.",
-        "Customized themes and improved UI and UX for responsive browsing and smoother navigation across devices.",
-        "Applied performance optimization, SEO best practices, and security configurations to improve production readiness.",
-        "Managed hosting, domain configuration, email integration, and post-deployment maintenance for stable day-to-day operations.",
+        "Deployed and configured a fully functional WordPress and WooCommerce e-commerce website, handling the complete layout, product architecture, and secure payment gateway.",
+        "Customized themes and optimized visual layouts, media assets, and configurations within the WordPress environment to ensure fast page speeds and responsive design across devices.",
+        "Managed the full deployment lifecycle including hosting setup, domain configuration, custom business email routing, SEO configurations, and post-launch stability maintenance.",
       ],
     },
   ],
@@ -251,6 +277,14 @@ export const portfolioData = {
     },
   ],
   certificates: [
+    {
+      title: "Cloud Computing Engineering",
+      fullTitle: "Cloud Computing Engineering (Azure / AWS)",
+      issuer: "NASSCOM",
+      year: "2026",
+      icon: Cloud,
+      fileUrl: certificateFile("Nasscom - Cloud Computing Engineering.pdf"),
+    },
     {
       title: "AI Tech Summit",
       issuer: "AI Tech Summit",
