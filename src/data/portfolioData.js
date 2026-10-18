@@ -111,7 +111,7 @@ export const portfolioData = {
       title: "Data Annotation Expert | Contract",
       company: "Mercor",
       period: "Sep 2026 - Sep 2026",
-      location: "Remote",
+      location: "San Francisco, CA (Remote)",
       tags: ["Data Annotation", "OCR & Transcription", "Quality Assurance", "PDF Datasets"],
       bullets: [
         "Performed 25+ document annotation and text transcription for PDF-based datasets, following detailed annotation guidelines and quality standards.",
@@ -124,7 +124,7 @@ export const portfolioData = {
       title: "AI Benchmark Contributor | Contract",
       company: "Handshake AI",
       period: "Jul 2026 - Aug 2026",
-      location: "Remote",
+      location: "San Francisco, CA (Remote)",
       tags: ["Python", "Docker", "AI Benchmarking", "Testing Frameworks"],
       bullets: [
         "Designed three end-to-end software engineering benchmark tasks for evaluating frontier language models.",
